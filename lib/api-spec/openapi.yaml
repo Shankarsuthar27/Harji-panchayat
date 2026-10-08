@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: panchayat
+    description: Public Panchayat portal data
 paths:
   /healthz:
     get:
@@ -24,6 +26,80 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /works:
+    get:
+      operationId: listPanchayatWorks
+      tags: [panchayat]
+      summary: List Panchayat development works
+      responses:
+        "200":
+          description: Works available to the public
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PanchayatWork"
+  /portal-summary:
+    get:
+      operationId: getPortalSummary
+      tags: [panchayat]
+      summary: Get public portal overview counts
+      responses:
+        "200":
+          description: Public summary of development works
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PortalSummary"
+  /inquiries:
+    post:
+      operationId: createPublicInquiry
+      tags: [panchayat]
+      summary: Submit a public inquiry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PublicInquiryInput"
+      responses:
+        "201":
+          description: Inquiry recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SubmissionReceipt"
+        "400":
+          description: Invalid inquiry details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /complaints:
+    post:
+      operationId: createPublicComplaint
+      tags: [panchayat]
+      summary: Register a public grievance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PublicComplaintInput"
+      responses:
+        "201":
+          description: Complaint registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SubmissionReceipt"
+        "400":
+          description: Invalid complaint details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +109,142 @@ components:
           type: string
       required:
         - status
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+    PanchayatWork:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        category:
+          type: string
+        location:
+          type: string
+        description:
+          type: string
+        sanctionedAmount:
+          type: integer
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+        status:
+          type: string
+          enum: [planned, ongoing, completed]
+        startDate:
+          type: string
+          format: date
+        targetDate:
+          type: string
+          format: date
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - title
+        - category
+        - location
+        - description
+        - sanctionedAmount
+        - progress
+        - status
+        - startDate
+        - targetDate
+        - updatedAt
+    PortalSummary:
+      type: object
+      properties:
+        totalWorks:
+          type: integer
+        ongoingWorks:
+          type: integer
+        completedWorks:
+          type: integer
+        plannedWorks:
+          type: integer
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - totalWorks
+        - ongoingWorks
+        - completedWorks
+        - plannedWorks
+        - updatedAt
+    PublicInquiryInput:
+      type: object
+      properties:
+        fullName:
+          type: string
+          minLength: 2
+          maxLength: 120
+        mobile:
+          type: string
+          pattern: "^[6-9][0-9]{9}$"
+        category:
+          type: string
+          enum: [certificates, schemes, pension, water, other]
+        subject:
+          type: string
+          minLength: 5
+          maxLength: 120
+        description:
+          type: string
+          minLength: 10
+          maxLength: 1200
+      required:
+        - fullName
+        - mobile
+        - category
+        - subject
+        - description
+    PublicComplaintInput:
+      type: object
+      properties:
+        fullName:
+          type: string
+          minLength: 2
+          maxLength: 120
+        area:
+          type: string
+          minLength: 2
+          maxLength: 120
+        mobile:
+          type: string
+          pattern: "^[6-9][0-9]{9}$"
+        category:
+          type: string
+          enum: [sanitation, water, electricity, roads, other]
+        description:
+          type: string
+          minLength: 10
+          maxLength: 2000
+      required:
+        - fullName
+        - area
+        - mobile
+        - category
+        - description
+    SubmissionReceipt:
+      type: object
+      properties:
+        reference:
+          type: string
+        submittedAt:
+          type: string
+          format: date-time
+        message:
+          type: string
+      required:
+        - reference
+        - submittedAt
+        - message
 

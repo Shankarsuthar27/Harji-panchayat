@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/harji-panchayat/"
+title = "Harji Gram Panchayat Portal"
+description = "A responsive public information and citizen-services portal for Harji Gram Panchayat, with development works, public inquiries, and grievance registration."
+version = "1.0.0"
+id = "artifacts/harji-panchayat"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/harji-panchayat/" ]
+localPort = 20202
+
+[services.development]
+run = "pnpm --filter @workspace/harji-panchayat run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/harji-panchayat", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/harji-panchayat/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20202"
+BASE_PATH = "/harji-panchayat/"
