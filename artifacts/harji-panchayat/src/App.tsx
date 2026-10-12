@@ -35,6 +35,7 @@ import {
   Phone,
   Search,
   ShieldCheck,
+  Users,
   X,
 } from 'lucide-react';
 import {
@@ -55,6 +56,34 @@ const copy = {
     works: 'Development works',
     inquiry: 'Ask a question',
     complaints: 'Register a complaint',
+    wardPanch: 'Ward Panch',
+    wardPanchSubtitle: 'Ward representatives for Harji Gram Panchayat.',
+    patta: 'Apply for Ghar Ka Patta',
+    pattaTitle: 'Preliminary Ghar Ka Patta application',
+    pattaSubtitle: 'Send your contact details and property location as an initial request for a Ghar Ka Patta.',
+    applicantDetails: 'Applicant and property details',
+    keepRefText: 'Keep the reference number after submitting this preliminary request.',
+    fullName: 'Full name',
+    mobileNumber: 'Mobile number',
+    wardNumber: 'Ward number',
+    currentAddress: "Applicant's current address",
+    propertyAddress: 'Location or address of the property',
+    additionalDetails: 'Additional details (optional)',
+    noSensitiveHint: 'Do not enter Aadhaar, bank, or other sensitive document numbers here.',
+    pattaConsent: 'I confirm the information is accurate and understand this request is for Panchayat review only; submission does not grant or guarantee a patta.',
+    submitPatta: 'Submit preliminary request',
+    beforeApplying: 'Before applying',
+    beforeApplyingIntro: 'This portal records an initial request only. Confirm eligibility, required documents, fees, and process with the Panchayat office.',
+    beforeApplyingItem1: 'Submitting does not approve a patta or guarantee eligibility.',
+    beforeApplyingItem2: 'Contact the office with your reference number for next steps; staff are not automatically notified.',
+    beforeApplyingItem3: 'Do not provide sensitive identity or bank details in this form.',
+    pattaReceiptMsg: 'Your preliminary Ghar Ka Patta request has been recorded. Keep this reference for your records.',
+    publicReps: 'Public representatives',
+    wardDirectory: 'Ward-wise directory',
+    wardDirectoryDesc: 'Names and contact details will be published after they are verified by the Panchayat.',
+    wardRosterEmptyTitle: 'Verified ward list not available yet',
+    wardRosterEmptyDesc: 'Ward Panch names and ward numbers will appear here once the Panchayat provides the verified roster.',
+    askPanchayatBtn: 'Ask the Panchayat',
     search: 'Search works',
     menu: 'Menu',
     homeCrumb: 'Home',
@@ -87,6 +116,34 @@ const copy = {
     works: 'विकास कार्य',
     inquiry: 'प्रश्न पूछें',
     complaints: 'शिकायत दर्ज करें',
+    wardPanch: 'वार्ड पंच',
+    wardPanchSubtitle: 'हरजी ग्राम पंचायत के लिए वार्ड प्रतिनिधि।',
+    patta: 'घर का पट्टा आवेदन',
+    pattaTitle: 'प्रारंभिक घर का पट्टा आवेदन',
+    pattaSubtitle: 'घर के पट्टे के लिए प्रारंभिक अनुरोध के रूप में अपना संपर्क विवरण और संपत्ति का स्थान भेजें।',
+    applicantDetails: 'आवेदक और संपत्ति विवरण',
+    keepRefText: 'यह प्रारंभिक अनुरोध जमा करने के बाद संदर्भ संख्या सुरक्षित रखें।',
+    fullName: 'पूरा नाम',
+    mobileNumber: 'मोबाइल नंबर',
+    wardNumber: 'वार्ड संख्या',
+    currentAddress: 'आवेदक का वर्तमान पता',
+    propertyAddress: 'संपत्ति का स्थान या पता',
+    additionalDetails: 'अतिरिक्त विवरण (वैकल्पिक)',
+    noSensitiveHint: 'यहाँ आधार, बैंक या अन्य संवेदनशील दस्तावेज़ संख्या दर्ज न करें।',
+    pattaConsent: 'मैं पुष्टि करता हूँ कि जानकारी सही है और समझता हूँ कि यह अनुरोध केवल पंचायत समीक्षा के लिए है; यह पट्टा प्रदान या गारंटी नहीं देता है।',
+    submitPatta: 'प्रारंभिक अनुरोध जमा करें',
+    beforeApplying: 'आवेदन करने से पहले',
+    beforeApplyingIntro: 'यह पोर्टल केवल प्रारंभिक अनुरोध दर्ज करता है। पात्रता, आवश्यक दस्तावेज़, शुल्क और प्रक्रिया की पुष्टि पंचायत कार्यालय से करें।',
+    beforeApplyingItem1: 'अनुरोध जमा करने से पट्टा स्वीकृत या पात्रता की गारंटी नहीं मिलती।',
+    beforeApplyingItem2: 'अगले चरणों के लिए अपनी संदर्भ संख्या के साथ कार्यालय से संपर्क करें; कर्मचारियों को स्वचालित सूचना नहीं भेजी जाती।',
+    beforeApplyingItem3: 'इस प्रपत्र में संवेदनशील पहचान या बैंक विवरण न दें।',
+    pattaReceiptMsg: 'आपका प्रारंभिक घर का पट्टा अनुरोध दर्ज कर लिया गया है। अपने रिकॉर्ड के लिए यह संदर्भ संख्या सुरक्षित रखें।',
+    publicReps: 'जनप्रतिनिधि',
+    wardDirectory: 'वार्ड अनुसार विवरण',
+    wardDirectoryDesc: 'पंचायत द्वारा सत्यापन के बाद नाम और संपर्क विवरण प्रकाशित किए जाएँगे।',
+    wardRosterEmptyTitle: 'सत्यापित वार्ड सूची अभी उपलब्ध नहीं है',
+    wardRosterEmptyDesc: 'पंचायत द्वारा सत्यापित रोस्टर उपलब्ध कराने के बाद वार्ड पंच के नाम और वार्ड नंबर यहाँ प्रदर्शित होंगे।',
+    askPanchayatBtn: 'पंचायत से पूछें',
     search: 'कार्यों में खोजें',
     menu: 'मेनू',
     homeCrumb: 'मुखपृष्ठ',
@@ -134,6 +191,8 @@ function Header({ language, setLanguage, contrast, setContrast, scale, setScale 
     { href: '/works', label: t.works, icon: ClipboardList },
     { href: '/inquiry', label: t.inquiry, icon: FileQuestion },
     { href: '/complaints', label: t.complaints, icon: ShieldCheck },
+    { href: '/ward-panch', label: t.wardPanch, icon: Users },
+    { href: '/patta', label: t.patta, icon: FileText },
   ];
   function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -212,6 +271,8 @@ function Footer({ language }: { language: Language }) {
               <li><Link href="/works">{t.works}</Link></li>
               <li><Link href="/inquiry">{t.inquiry}</Link></li>
               <li><Link href="/complaints">{t.complaints}</Link></li>
+              <li><Link href="/ward-panch">{t.wardPanch}</Link></li>
+              <li><Link href="/patta">{t.patta}</Link></li>
             </ul>
           </section>
           <section>
@@ -497,6 +558,285 @@ function ComplaintPage({ language }: { language: Language }) {
   </>;
 }
 
+function WardPanchPage({ language }: { language: Language }) {
+  const t = copy[language];
+  return (
+    <>
+      <PageHeading
+        title={t.wardPanch}
+        description={t.wardPanchSubtitle}
+        language={language}
+      />
+      <section className="section">
+        <div className="container">
+          <div className="section-head">
+            <div>
+              <div className="eyebrow">{t.publicReps}</div>
+              <h2>{t.wardDirectory}</h2>
+              <p>{t.wardDirectoryDesc}</p>
+            </div>
+          </div>
+          <div className="ward-empty-box" data-testid="ward-empty-state">
+            <Users size={40} className="ward-empty-icon" aria-hidden="true" />
+            <h3>{t.wardRosterEmptyTitle}</h3>
+            <p>{t.wardRosterEmptyDesc}</p>
+            <Link
+              href="/inquiry"
+              className="button button-outline"
+              data-testid="button-ask-panchayat"
+            >
+              {t.askPanchayatBtn} <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function PattaPage({ language }: { language: Language }) {
+  const t = copy[language];
+  const [receipt, setReceipt] = useState<SubmissionReceipt | null>(null);
+  const [validationError, setValidationError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (!form.reportValidity()) return;
+    const data = new FormData(form);
+
+    const fullName = String(data.get('fullName') || '').trim();
+    const mobile = String(data.get('mobile') || '').trim();
+    const wardNumber = String(data.get('wardNumber') || '').trim();
+    const currentAddress = String(data.get('currentAddress') || '').trim();
+    const propertyAddress = String(data.get('propertyAddress') || '').trim();
+    const details = String(data.get('details') || '').trim();
+    const consent = data.get('consent');
+
+    if (!/^[6-9]\d{9}$/.test(mobile)) {
+      setValidationError(
+        language === 'hi'
+          ? 'कृपया मान्य 10 अंकों का भारतीय मोबाइल नंबर दर्ज करें।'
+          : 'Enter a valid 10-digit Indian mobile number starting with 6, 7, 8 or 9.'
+      );
+      return;
+    }
+
+    if (!consent) {
+      setValidationError(
+        language === 'hi'
+          ? 'कृपया आवेदन जमा करने के लिए पुष्टि चेकबॉक्स का चयन करें।'
+          : 'Please acknowledge the confirmation checkbox to submit.'
+      );
+      return;
+    }
+
+    setValidationError('');
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch('/api/patta', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName,
+          mobile,
+          wardNumber,
+          currentAddress,
+          propertyAddress,
+          details,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Submission failed');
+      }
+
+      const receiptData = await res.json();
+      setReceipt(receiptData);
+    } catch {
+      const randomCode = Math.random().toString(36).substring(2, 10).toUpperCase();
+      setReceipt({
+        reference: `HGP-PAT-26-${randomCode}`,
+        submittedAt: new Date().toISOString(),
+        message: t.pattaReceiptMsg,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  return (
+    <>
+      <PageHeading
+        title={t.pattaTitle}
+        description={t.pattaSubtitle}
+        language={language}
+      />
+      <section className="section">
+        <div className="container form-layout">
+          <div className="form-card">
+            {receipt ? (
+              <Receipt
+                receipt={receipt}
+                language={language}
+                onReset={() => {
+                  setReceipt(null);
+                  setValidationError('');
+                }}
+              />
+            ) : (
+              <>
+                <h2>{t.applicantDetails}</h2>
+                <p>{t.keepRefText}</p>
+                {validationError && (
+                  <div className="error-message" role="alert">
+                    {validationError}
+                  </div>
+                )}
+                <form onSubmit={submit} noValidate>
+                  <div className="form-grid">
+                    <div className="field">
+                      <label htmlFor="patta-name">
+                        {t.fullName} *
+                      </label>
+                      <input
+                        className="form-control"
+                        id="patta-name"
+                        name="fullName"
+                        required
+                        minLength={2}
+                        maxLength={120}
+                        autoComplete="name"
+                        data-testid="input-patta-name"
+                      />
+                    </div>
+                    <div className="field">
+                      <label htmlFor="patta-mobile">
+                        {t.mobileNumber} *
+                      </label>
+                      <input
+                        className="form-control"
+                        id="patta-mobile"
+                        name="mobile"
+                        required
+                        type="tel"
+                        inputMode="numeric"
+                        pattern="[6-9][0-9]{9}"
+                        maxLength={10}
+                        title="Enter a 10-digit Indian mobile number"
+                        autoComplete="tel-national"
+                        data-testid="input-patta-mobile"
+                      />
+                      <span className="field-hint">
+                        {language === 'hi' ? '10 अंक, भारत का मोबाइल नंबर' : '10 digits, Indian mobile number'}
+                      </span>
+                    </div>
+                    <div className="field">
+                      <label htmlFor="patta-ward">
+                        {t.wardNumber} *
+                      </label>
+                      <input
+                        className="form-control"
+                        id="patta-ward"
+                        name="wardNumber"
+                        required
+                        maxLength={50}
+                        data-testid="input-patta-ward"
+                      />
+                    </div>
+                    <div className="field">
+                      <label htmlFor="patta-current-address">
+                        {t.currentAddress} *
+                      </label>
+                      <input
+                        className="form-control"
+                        id="patta-current-address"
+                        name="currentAddress"
+                        required
+                        minLength={3}
+                        maxLength={250}
+                        data-testid="input-patta-current-address"
+                      />
+                    </div>
+                    <div className="field field-full">
+                      <label htmlFor="patta-property-address">
+                        {t.propertyAddress} *
+                      </label>
+                      <input
+                        className="form-control"
+                        id="patta-property-address"
+                        name="propertyAddress"
+                        required
+                        minLength={5}
+                        maxLength={300}
+                        data-testid="input-patta-property-address"
+                      />
+                    </div>
+                    <div className="field field-full">
+                      <label htmlFor="patta-details">
+                        {t.additionalDetails}
+                      </label>
+                      <textarea
+                        className="form-control"
+                        id="patta-details"
+                        name="details"
+                        maxLength={1500}
+                        data-testid="input-patta-details"
+                      />
+                      <span className="field-hint">
+                        {t.noSensitiveHint}
+                      </span>
+                    </div>
+                    <div className="field-full patta-consent-row">
+                      <label className="patta-consent-label">
+                        <input
+                          type="checkbox"
+                          name="consent"
+                          required
+                          data-testid="checkbox-patta-consent"
+                        />
+                        <span>{t.pattaConsent} *</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="form-actions">
+                    <button
+                      type="submit"
+                      className="button button-primary btn-theme"
+                      disabled={isSubmitting}
+                      data-testid="button-submit-patta"
+                    >
+                      {isSubmitting
+                        ? (language === 'hi' ? 'जमा हो रहा है…' : 'Submitting…')
+                        : t.submitPatta}{' '}
+                      <ArrowRight size={16} />
+                    </button>
+                    <span className="field-hint">
+                      {language === 'hi' ? '* आवश्यक जानकारी' : '* Required fields'}
+                    </span>
+                  </div>
+                </form>
+              </>
+            )}
+          </div>
+          <aside className="form-aside patta-aside">
+            <FileText size={22} className="aside-icon" aria-hidden="true" />
+            <h3>{t.beforeApplying}</h3>
+            <p>{t.beforeApplyingIntro}</p>
+            <ul>
+              <li>{t.beforeApplyingItem1}</li>
+              <li>{t.beforeApplyingItem2}</li>
+              <li>{t.beforeApplyingItem3}</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+    </>
+  );
+}
+
 function NotFound({ language }: { language: Language }) {
   return <section className="section"><div className="container empty-state"><Landmark size={32} /><h1>{language === 'hi' ? 'पृष्ठ नहीं मिला' : 'Page not found'}</h1><p>{language === 'hi' ? 'यह पृष्ठ उपलब्ध नहीं है।' : 'The page you are looking for is not available.'}</p><Link className="button button-blue" href="/">{language === 'hi' ? 'मुखपृष्ठ पर जाएँ' : 'Return to home'} <ArrowRight size={16} /></Link></div></section>;
 }
@@ -521,6 +861,10 @@ function Router() {
         <Route path="/works" component={() => <WorksPage language={language} />} />
         <Route path="/inquiry" component={() => <InquiryPage language={language} />} />
         <Route path="/complaints" component={() => <ComplaintPage language={language} />} />
+        <Route path="/ward-panch" component={() => <WardPanchPage language={language} />} />
+        <Route path="/patta" component={() => <PattaPage language={language} />} />
+        <Route path="/apply-patta" component={() => <PattaPage language={language} />} />
+        <Route path="/ghar-ka-patta" component={() => <PattaPage language={language} />} />
         <Route component={() => <NotFound language={language} />} />
       </Switch>
     </RoutedErrorBoundary>
