@@ -45,6 +45,7 @@ import {
   useLocation,
   Router as WouterRouter,
 } from 'wouter';
+import MobileSidebarDrawer from '@/components/MobileSidebarDrawer';
 
 const queryClient = new QueryClient();
 
@@ -859,6 +860,9 @@ function Router() {
     document.documentElement.style.fontSize = `${16 * scale}px`;
     return () => { document.documentElement.style.fontSize = ''; };
   }, [scale]);
+  if (location === '/drawer' || location === '/sidebar') {
+    return <MobileSidebarDrawer />;
+  }
   return <Shell language={language} setLanguage={setLanguage} scale={scale} setScale={setScale}>
     <RoutedErrorBoundary location={location}>
       <Switch>
