@@ -173,11 +173,9 @@ const copy = {
   },
 };
 
-function Header({ language, setLanguage, contrast, setContrast, scale, setScale }: {
+function Header({ language, setLanguage, scale, setScale }: {
   language: Language;
   setLanguage: (lang: Language) => void;
-  contrast: boolean;
-  setContrast: (value: boolean) => void;
   scale: number;
   setScale: (value: number) => void;
 }) {
@@ -208,7 +206,6 @@ function Header({ language, setLanguage, contrast, setContrast, scale, setScale 
           <div className="access-tools" aria-label="Accessibility controls">
             <button type="button" aria-label="Decrease text size" onClick={() => setScale(Math.max(.9, +(scale - .1).toFixed(1)))} data-testid="button-text-decrease">{t.decrease}</button>
             <button type="button" aria-label="Increase text size" onClick={() => setScale(Math.min(1.3, +(scale + .1).toFixed(1)))} data-testid="button-text-increase">{t.increase}</button>
-            <button type="button" aria-pressed={contrast} onClick={() => setContrast(!contrast)} data-testid="button-high-contrast">{t.contrast}</button>
             <label className="sr-only" htmlFor="language-select">{t.language}</label>
             <select id="language-select" aria-label={t.language} value={language} onChange={(event) => setLanguage(event.target.value as Language)} data-testid="select-language">
               <option value="en">English</option>
@@ -291,18 +288,16 @@ function Footer({ language }: { language: Language }) {
   );
 }
 
-function Shell({ children, language, setLanguage, contrast, setContrast, scale, setScale }: {
+function Shell({ children, language, setLanguage, scale, setScale }: {
   children: ReactNode;
   language: Language;
   setLanguage: (lang: Language) => void;
-  contrast: boolean;
-  setContrast: (value: boolean) => void;
   scale: number;
   setScale: (value: number) => void;
 }) {
   return (
-    <div className={`portal ${contrast ? 'contrast' : ''}`} style={{ '--text-scale': scale, backgroundColor: 'hsl(var(--background))', color: 'hsl(var(--foreground))' } as CSSProperties}>
-      <Header language={language} setLanguage={setLanguage} contrast={contrast} setContrast={setContrast} scale={scale} setScale={setScale} />
+    <div className="portal" style={{ '--text-scale': scale, backgroundColor: 'hsl(var(--background))', color: 'hsl(var(--foreground))' } as CSSProperties}>
+      <Header language={language} setLanguage={setLanguage} scale={scale} setScale={setScale} />
       <main id="main-content" className="main-content" tabIndex={-1}>{children}</main>
       <Footer language={language} />
     </div>
@@ -843,18 +838,28 @@ function NotFound({ language }: { language: Language }) {
 
 function Router() {
   const [location] = useLocation();
-  const [language, setLanguage] = useState<Language>('en');
-  const [contrast, setContrast] = useState(false);
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('harji_panchayat_lang');
+      if (saved === 'en' || saved === 'hi') {
+        return saved;
+      }
+    }
+    return 'hi';
+  });
   const [scale, setScale] = useState(1);
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, [location]);
   useEffect(() => {
     document.documentElement.lang = language === 'hi' ? 'hi' : 'en';
+    try {
+      localStorage.setItem('harji_panchayat_lang', language);
+    } catch {}
   }, [language]);
   useEffect(() => {
     document.documentElement.style.fontSize = `${16 * scale}px`;
     return () => { document.documentElement.style.fontSize = ''; };
   }, [scale]);
-  return <Shell language={language} setLanguage={setLanguage} contrast={contrast} setContrast={setContrast} scale={scale} setScale={setScale}>
+  return <Shell language={language} setLanguage={setLanguage} scale={scale} setScale={setScale}>
     <RoutedErrorBoundary location={location}>
       <Switch>
         <Route path="/" component={() => <HomePage language={language} />} />
