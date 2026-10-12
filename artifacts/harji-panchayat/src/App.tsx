@@ -496,20 +496,252 @@ function formatPanchayatDate(value: string, language: Language) {
   }).format(date);
 }
 
+export const DEMO_WORKS: Record<Language, PanchayatWork[]> = {
+  hi: [
+    {
+      id: 1,
+      title: 'मुख्य बाजार से बस स्टैंड तक सीसी सड़क निर्माण कार्य',
+      category: 'सड़क एवं परिवहन',
+      location: 'वार्ड 1 व 2, मुख्य मार्ग, हरजी',
+      description: 'सड़क चौड़ीकरण, पक्की सीसी ढलाई और दोनों तरफ कवर्ड जल निकासी नाली का सुदृढ़ निर्माण कार्य।',
+      sanctionedAmount: 1450000,
+      progress: 75,
+      status: 'ongoing',
+      startDate: '2026-04-10',
+      targetDate: '2026-11-30',
+      updatedAt: '2026-10-10T00:00:00.000Z',
+    },
+    {
+      id: 2,
+      title: 'समस्त 7 वार्डों में 120 सौर ऊर्जा (सोलर) स्ट्रीट लाइट स्थापना',
+      category: 'विद्युतीकरण',
+      location: 'वार्ड 1 से 7, ग्राम हरजी',
+      description: 'गांव के मुख्य चौराहों, सार्वजनिक गलियों, स्कूल तिराहे और श्मशान मार्ग पर उच्च गुणवत्ता वाली सोलर लाइट स्थापना।',
+      sanctionedAmount: 980000,
+      progress: 100,
+      status: 'completed',
+      startDate: '2026-02-01',
+      targetDate: '2026-08-15',
+      updatedAt: '2026-08-15T00:00:00.000Z',
+    },
+    {
+      id: 3,
+      title: 'सामुदायिक आरओ वाटर प्लांट एवं शुद्ध जल एटीएम स्थापना',
+      category: 'पेयजल योजना',
+      location: 'प्राथमिक स्वास्थ्य केंद्र के समीप, हरजी',
+      description: 'ग्रामीणों को स्वच्छ एवं फ्लोराइड मुक्त पेयजल आपूर्ति हेतु 2000 LPH क्षमता का आधुनिक आरओ प्लांट।',
+      sanctionedAmount: 850000,
+      progress: 60,
+      status: 'ongoing',
+      startDate: '2026-05-15',
+      targetDate: '2026-12-15',
+      updatedAt: '2026-09-28T00:00:00.000Z',
+    },
+    {
+      id: 4,
+      title: 'ग्राम पंचायत भवन जीर्णोद्धार एवं डिजिटल ई-मित्र सेवा केंद्र',
+      category: 'सार्वजनिक भवन',
+      location: 'पंचायत सचिवालय परिसर, हरजी',
+      description: 'नागरिकों की सुविधा हेतु पंचायत भवन की मरम्मत, सोलर रूफटॉप, कंप्यूटर लैब और आधुनिक प्रतीक्षा कक्ष।',
+      sanctionedAmount: 1200000,
+      progress: 100,
+      status: 'completed',
+      startDate: '2026-01-10',
+      targetDate: '2026-06-30',
+      updatedAt: '2026-06-30T00:00:00.000Z',
+    },
+    {
+      id: 5,
+      title: 'अमृत सरोवर ग्राम तालाब गहरीकरण, पक्के घाट एवं वृक्षारोपण',
+      category: 'जल संरक्षण',
+      location: 'पूर्वी सीमा, ग्राम हरजी',
+      description: 'वर्षा जल संचयन हेतु ऐतिहासिक तालाब की गाद निकासी, पक्के घाट, सुरक्षित पाथवे और बैठने हेतु बेंच निर्माण।',
+      sanctionedAmount: 1650000,
+      progress: 45,
+      status: 'ongoing',
+      startDate: '2026-06-01',
+      targetDate: '2027-01-20',
+      updatedAt: '2026-10-05T00:00:00.000Z',
+    },
+    {
+      id: 6,
+      title: 'राजकीय उच्च माध्यमिक विद्यालय सुरक्षित चारदीवारी एवं नवीन शौचालय ब्लॉक',
+      category: 'शिक्षा एवं विद्यालय',
+      location: 'स्कूल परिसर, हरजी',
+      description: 'छात्र-छात्राओं के लिए पृथक आधुनिक शौचालय, रनिंग वाटर सुविधा एवं सुरक्षित बाउंड्री वॉल निर्माण।',
+      sanctionedAmount: 750000,
+      progress: 15,
+      status: 'planned',
+      startDate: '2026-09-01',
+      targetDate: '2027-03-31',
+      updatedAt: '2026-09-15T00:00:00.000Z',
+    },
+    {
+      id: 7,
+      title: 'आवासीय क्षेत्र में भूमिगत पक्की नाली एवं सोखता गड्ढा निर्माण',
+      category: 'स्वच्छता एवं नाली',
+      location: 'वार्ड 3, 4 व 5, हरजी',
+      description: 'गलियों में जलभराव की समस्या के स्थायी निवारण हेतु कवर्ड भूमिगत ड्रेनेज लाइन और सोक-पिट निर्माण।',
+      sanctionedAmount: 1100000,
+      progress: 0,
+      status: 'planned',
+      startDate: '2026-10-01',
+      targetDate: '2027-04-30',
+      updatedAt: '2026-10-01T00:00:00.000Z',
+    },
+    {
+      id: 8,
+      title: 'ठोस एवं तरल कचरा प्रबंधन (SLWM) संसाधन एवं सेग्रीगेशन केंद्र',
+      category: 'स्वच्छता एवं नाली',
+      location: 'बायपास रोड के पास, हरजी',
+      description: 'स्वच्छ भारत मिशन ग्रामीण के अंतर्गत कचरा पृथक्करण शेड, कम्पोस्ट पिट एवं ई-रिक्शा द्वारा घर-घर संग्रहण।',
+      sanctionedAmount: 800000,
+      progress: 100,
+      status: 'completed',
+      startDate: '2026-01-15',
+      targetDate: '2026-07-10',
+      updatedAt: '2026-07-10T00:00:00.000Z',
+    },
+  ],
+  en: [
+    {
+      id: 1,
+      title: 'CC Road Construction from Main Market to Bus Stand',
+      category: 'Roads & Transport',
+      location: 'Ward 1 & 2, Main Road, Harji',
+      description: 'Road widening, durable cement concrete paving, and covered side drainage channel construction.',
+      sanctionedAmount: 1450000,
+      progress: 75,
+      status: 'ongoing',
+      startDate: '2026-04-10',
+      targetDate: '2026-11-30',
+      updatedAt: '2026-10-10T00:00:00.000Z',
+    },
+    {
+      id: 2,
+      title: 'Installation of 120 Solar Street Lights in All 7 Wards',
+      category: 'Electrification',
+      location: 'Wards 1 to 7, Harji Village',
+      description: 'Installation of high-efficiency solar street lights at major crossings, public alleys, and community areas.',
+      sanctionedAmount: 980000,
+      progress: 100,
+      status: 'completed',
+      startDate: '2026-02-01',
+      targetDate: '2026-08-15',
+      updatedAt: '2026-08-15T00:00:00.000Z',
+    },
+    {
+      id: 3,
+      title: 'Community RO Drinking Water Plant & Clean Water ATM',
+      category: 'Drinking Water',
+      location: 'Near Primary Health Center, Harji',
+      description: 'Installation of 2000 LPH capacity RO purification unit and water ATM providing clean fluoride-free water.',
+      sanctionedAmount: 850000,
+      progress: 60,
+      status: 'ongoing',
+      startDate: '2026-05-15',
+      targetDate: '2026-12-15',
+      updatedAt: '2026-09-28T00:00:00.000Z',
+    },
+    {
+      id: 4,
+      title: 'Panchayat Bhawan Modernization & Digital E-Mitra Center',
+      category: 'Public Infrastructure',
+      location: 'Panchayat Secretariat Campus, Harji',
+      description: 'Renovation of Panchayat building, rooftop solar panels, computer lab, and citizen waiting lounge.',
+      sanctionedAmount: 1200000,
+      progress: 100,
+      status: 'completed',
+      startDate: '2026-01-10',
+      targetDate: '2026-06-30',
+      updatedAt: '2026-06-30T00:00:00.000Z',
+    },
+    {
+      id: 5,
+      title: 'Amrit Sarovar Village Pond Deepening & Ghat Construction',
+      category: 'Water Conservation',
+      location: 'Eastern Border, Harji Village',
+      description: 'Rainwater conservation through silt removal, paved ghat steps, protective pathway, and plantation.',
+      sanctionedAmount: 1650000,
+      progress: 45,
+      status: 'ongoing',
+      startDate: '2026-06-01',
+      targetDate: '2027-01-20',
+      updatedAt: '2026-10-05T00:00:00.000Z',
+    },
+    {
+      id: 6,
+      title: 'Govt. Higher Secondary School Boundary Wall & Modern Toilets',
+      category: 'Education',
+      location: 'School Campus, Harji',
+      description: 'Construction of separate sanitation blocks for boys and girls with running water and safety boundary wall.',
+      sanctionedAmount: 750000,
+      progress: 15,
+      status: 'planned',
+      startDate: '2026-09-01',
+      targetDate: '2027-03-31',
+      updatedAt: '2026-09-15T00:00:00.000Z',
+    },
+    {
+      id: 7,
+      title: 'Underground Drainage Pipeline & Soak Pit Construction',
+      category: 'Sanitation & Drainage',
+      location: 'Wards 3, 4 & 5, Harji',
+      description: 'Covered underground pipeline and soak pits to permanently eliminate lane waterlogging issues.',
+      sanctionedAmount: 1100000,
+      progress: 0,
+      status: 'planned',
+      startDate: '2026-10-01',
+      targetDate: '2027-04-30',
+      updatedAt: '2026-10-01T00:00:00.000Z',
+    },
+    {
+      id: 8,
+      title: 'Solid & Liquid Waste Management (SLWM) Resource Center',
+      category: 'Sanitation & Drainage',
+      location: 'Near Bypass Road, Harji',
+      description: 'Waste segregation shed, community compost pits, and door-to-door e-rickshaw collection setup under SBM.',
+      sanctionedAmount: 800000,
+      progress: 100,
+      status: 'completed',
+      startDate: '2026-01-15',
+      targetDate: '2026-07-10',
+      updatedAt: '2026-07-10T00:00:00.000Z',
+    },
+  ],
+};
+
 function WorkCard({ work, language }: { work: PanchayatWork; language: Language }) {
-  return <article className="work-card" data-testid={`card-work-${work.id}`}>
-    <div><span className={statusClass(work.status)}>{statusLabel(work.status, language)}</span></div>
-    <h3>{work.title}</h3>
-    <p>{work.description}</p>
-    <div className="work-meta"><span><MapPin size={13} /> {work.location}</span><span>{work.progress}%</span></div>
-  </article>;
+  return (
+    <article className="work-card" data-testid={`card-work-${work.id}`}>
+      <div><span className={statusClass(work.status)}>{statusLabel(work.status, language)}</span></div>
+      <h3>{work.title}</h3>
+      <p>{work.description}</p>
+      <div className="work-meta">
+        <span><MapPin size={13} /> {work.location}</span>
+        <span style={{ fontWeight: 700, color: '#0369a1' }}>{work.progress}%</span>
+      </div>
+    </article>
+  );
 }
 
 function HomePage({ language }: { language: Language }) {
   const t = copy[language];
   const summary = useGetPortalSummary({ query: { queryKey: getGetPortalSummaryQueryKey() } });
   const works = useListPanchayatWorks({ query: { queryKey: getListPanchayatWorksQueryKey() } });
-  const worksPreview = (works.data ?? []).slice(0, 3);
+
+  // Resilient fallback: always show demo works before and after deployment
+  const worksData = (works.data && works.data.length > 0) ? works.data : DEMO_WORKS[language];
+  const worksPreview = worksData.slice(0, 3);
+
+  const summaryData = (summary.data && summary.data.totalWorks > 0) ? summary.data : {
+    totalWorks: worksData.length,
+    ongoingWorks: worksData.filter((w) => w.status === 'ongoing').length,
+    completedWorks: worksData.filter((w) => w.status === 'completed').length,
+    plannedWorks: worksData.filter((w) => w.status === 'planned').length,
+    updatedAt: new Date().toISOString(),
+  };
+
   return <>
     <section className="hero" style={{ '--hero-image': `url("${villageBannerUrl}")` } as CSSProperties}>
       <div className="hero-inner container">
@@ -534,15 +766,18 @@ function HomePage({ language }: { language: Language }) {
         </div>
         <div className="summary-layout">
           <div>
-            {summary.isLoading ? <div className="stats-grid" aria-label="Loading portal summary"><div className="skeleton loading-card" /><div className="skeleton loading-card" /><div className="skeleton loading-card" /><div className="skeleton loading-card" /></div> :
-              summary.isError ? <QueryError message="Portal summary could not be loaded right now." onRetry={() => void summary.refetch()} /> :
-                <div className="stats-grid">
-                  {[{ label: t.total, value: summary.data?.totalWorks, icon: ClipboardList }, { label: t.ongoing, value: summary.data?.ongoingWorks, icon: Building2 }, { label: t.completed, value: summary.data?.completedWorks, icon: CheckCircle2 }, { label: t.planned, value: summary.data?.plannedWorks, icon: FileText }].map(({ label, value, icon: Icon }) => (
-                    <div className="stat-card" key={label} data-testid={`stat-${label.toLowerCase().replaceAll(' ', '-')}`}>
-                      <Icon className="stat-icon" size={19} aria-hidden="true" /><div className="stat-value">{value ?? '—'}</div><div className="stat-label">{label}</div>
-                    </div>
-                  ))}
-                </div>}
+            <div className="stats-grid">
+              {[
+                { label: t.total, value: summaryData.totalWorks, icon: ClipboardList },
+                { label: t.ongoing, value: summaryData.ongoingWorks, icon: Building2 },
+                { label: t.completed, value: summaryData.completedWorks, icon: CheckCircle2 },
+                { label: t.planned, value: summaryData.plannedWorks, icon: FileText }
+              ].map(({ label, value, icon: Icon }) => (
+                <div className="stat-card" key={label} data-testid={`stat-${label.toLowerCase().replaceAll(' ', '-')}`}>
+                  <Icon className="stat-icon" size={19} aria-hidden="true" /><div className="stat-value">{value ?? '—'}</div><div className="stat-label">{label}</div>
+                </div>
+              ))}
+            </div>
             <div className="summary-note"><CircleAlert size={15} /> {t.sampleWarning}</div>
           </div>
           <aside className="service-panel">
@@ -564,10 +799,9 @@ function HomePage({ language }: { language: Language }) {
           <Link href="/works" className="button button-outline">{t.viewAll}<ArrowRight size={15} /></Link>
         </div>
         <div className="sample-ribbon"><CircleAlert size={16} /><span><strong>{t.sample}.</strong> {t.sampleWarning}</span></div>
-        {works.isLoading ? <div className="work-grid"><div className="skeleton loading-card" /><div className="skeleton loading-card" /><div className="skeleton loading-card" /></div> :
-          works.isError ? <QueryError message="Development works could not be loaded." onRetry={() => void works.refetch()} /> :
-            worksPreview.length ? <div className="work-grid">{worksPreview.map((work) => <WorkCard key={work.id} work={work} language={language} />)}</div> :
-              <div className="empty-state"><ClipboardList size={24} /><h3>{language === 'hi' ? 'अभी कोई कार्य सूचीबद्ध नहीं है' : 'No works are listed yet'}</h3><p>{language === 'hi' ? 'नई जानकारी उपलब्ध होने पर यहाँ दिखाई जाएगी।' : 'New information will appear here when it is available.'}</p></div>}
+        <div className="work-grid">
+          {worksPreview.map((work) => <WorkCard key={work.id} work={work} language={language} />)}
+        </div>
       </div>
     </section>
   </>;
@@ -585,11 +819,16 @@ function WorksPage({ language }: { language: Language }) {
   const [status, setStatus] = useState('all');
   const [category, setCategory] = useState('all');
   useEffect(() => setSearch(searchParam), [searchParam]);
-  const availableCategories = [...new Set((result.data ?? []).map((work) => work.category))];
-  const filtered = (result.data ?? []).filter((work) => {
+
+  // Guaranteed availability: if API returns data use it, otherwise fall back to demo works
+  const allWorks = (result.data && result.data.length > 0) ? result.data : DEMO_WORKS[language];
+
+  const availableCategories = [...new Set(allWorks.map((work) => work.category))];
+  const filtered = allWorks.filter((work) => {
     const text = `${work.title} ${work.description} ${work.location} ${work.category}`.toLocaleLowerCase();
     return text.includes(search.toLocaleLowerCase()) && (status === 'all' || work.status === status) && (category === 'all' || work.category === category);
   });
+
   return <>
     <PageHeading title={t.works} description={language === 'hi' ? 'ग्राम पंचायत में सूचीबद्ध परियोजनाओं की स्थिति और प्रगति देखें।' : 'Review the status and reported progress of projects listed by the Gram Panchayat.'} language={language} />
     <section className="section"><div className="container">
@@ -599,12 +838,47 @@ function WorksPage({ language }: { language: Language }) {
         <div className="filter-control"><label htmlFor="filter-status">{language === 'hi' ? 'स्थिति' : 'Status'}</label><select id="filter-status" value={status} onChange={(event) => setStatus(event.target.value)} data-testid="select-work-status"><option value="all">{language === 'hi' ? 'सभी स्थितियाँ' : 'All statuses'}</option><option value="planned">{statusLabel('planned', language)}</option><option value="ongoing">{statusLabel('ongoing', language)}</option><option value="completed">{statusLabel('completed', language)}</option></select></div>
         <div className="filter-control"><label htmlFor="filter-category">{language === 'hi' ? 'श्रेणी' : 'Category'}</label><select id="filter-category" value={category} onChange={(event) => setCategory(event.target.value)} data-testid="select-work-category"><option value="all">{language === 'hi' ? 'सभी श्रेणियाँ' : 'All categories'}</option>{availableCategories.map((item) => <option key={item} value={item}>{item}</option>)}</select></div>
       </div>
-      {result.isLoading ? <div className="work-list" aria-label="Loading development works"><div className="skeleton loading-card" /><div className="skeleton loading-card" /><div className="skeleton loading-card" /></div> :
-        result.isError ? <QueryError message="Development works could not be loaded." onRetry={() => void result.refetch()} /> :
-        filtered.length ? <div className="work-list">{filtered.map((work) => <article className="work-row" key={work.id} data-testid={`row-work-${work.id}`}>
-            <div><span className={statusClass(work.status)}>{statusLabel(work.status, language)}</span><h2>{work.title}</h2><p>{work.description}</p><div className="work-meta"><span><MapPin size={13} /> {work.location}</span><span>{work.category}</span><span>{language === 'hi' ? 'अनुमानित राशि' : 'Sanctioned amount'}: ₹{Number(work.sanctionedAmount).toLocaleString('en-IN')}</span></div></div>
-            <div className="progress-side"><div className="progress-label"><span>{language === 'hi' ? 'प्रगति' : 'Progress'}</span><strong>{work.progress}%</strong></div><div className="progress-track" role="progressbar" aria-label={`${work.title} progress`} aria-valuenow={work.progress} aria-valuemin={0} aria-valuemax={100}><span style={{ width: `${Math.min(100, Math.max(0, work.progress))}%` }} /></div><p className="notice">{language === 'hi' ? 'लक्ष्य तिथि' : 'Target date'}: {formatPanchayatDate(work.targetDate, language)}</p></div>
-          </article>)}</div> : <div className="empty-state"><Search size={24} /><h2>{language === 'hi' ? 'कोई मेल नहीं मिला' : 'No matching works'}</h2><p>{language === 'hi' ? 'खोज या फ़िल्टर बदलकर फिर कोशिश करें।' : 'Try another search term or change the filters.'}</p></div>}
+      
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', color: '#64748b', fontSize: '0.85rem' }}>
+        <span>{language === 'hi' ? `प्रदर्शित विकास कार्य: ${filtered.length} (कुल: ${allWorks.length})` : `Showing ${filtered.length} of ${allWorks.length} development works`}</span>
+      </div>
+
+      {filtered.length ? (
+        <div className="work-list">
+          {filtered.map((work) => (
+            <article className="work-row" key={work.id} data-testid={`row-work-${work.id}`}>
+              <div>
+                <span className={statusClass(work.status)}>{statusLabel(work.status, language)}</span>
+                <h2>{work.title}</h2>
+                <p>{work.description}</p>
+                <div className="work-meta">
+                  <span><MapPin size={13} /> {work.location}</span>
+                  <span>{work.category}</span>
+                  <span style={{ fontWeight: 600 }}>{language === 'hi' ? 'स्वीकृत राशि' : 'Sanctioned'}: ₹{Number(work.sanctionedAmount).toLocaleString('en-IN')}</span>
+                </div>
+              </div>
+              <div className="progress-side">
+                <div className="progress-label">
+                  <span>{language === 'hi' ? 'कार्य प्रगति' : 'Progress'}</span>
+                  <strong>{work.progress}%</strong>
+                </div>
+                <div className="progress-track" role="progressbar" aria-label={`${work.title} progress`} aria-valuenow={work.progress} aria-valuemin={0} aria-valuemax={100}>
+                  <span style={{ width: `${Math.min(100, Math.max(0, work.progress))}%`, backgroundColor: work.status === 'completed' ? '#22c55e' : work.status === 'ongoing' ? '#0284c7' : '#94a3b8' }} />
+                </div>
+                <p className="notice" style={{ marginTop: '0.6rem', fontSize: '0.78rem' }}>
+                  {language === 'hi' ? 'लक्ष्य तिथि' : 'Target date'}: <strong>{formatPanchayatDate(work.targetDate, language)}</strong>
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div className="empty-state">
+          <Search size={24} />
+          <h2>{language === 'hi' ? 'कोई मेल नहीं मिला' : 'No matching works'}</h2>
+          <p>{language === 'hi' ? 'खोज या फ़िल्टर बदलकर फिर कोशिश करें।' : 'Try another search term or change the filters.'}</p>
+        </div>
+      )}
     </div></section>
   </>;
 }

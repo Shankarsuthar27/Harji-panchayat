@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice - Harji Panchayat Website Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-4 md:p-8 flex justify-center items-start min-h-screen">
+    <div class="w-full max-w-3xl bg-white p-6 md:p-12 rounded shadow-sm border border-gray-200">
+        
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:justify-between items-start mb-8 md:mb-12">
+            <div class="mb-6 md:mb-0">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 tracking-wider">INVOICE</h1>
+                <p class="text-gray-500 mt-2 text-sm md:text-base">#INV-2026-001</p>
+                <p class="text-gray-500 text-sm md:text-base">October 12, 2026</p>
+            </div>
+            <div class="text-left md:text-right text-gray-700">
+                <p class="font-bold text-lg md:text-xl text-gray-900">Shankar Suthar</p>
+                <p class="text-sm md:text-base">Full-Stack Web Developer</p>
+                <p class="text-sm md:text-base">Falna, Rajasthan</p>
+                <p class="text-sm md:text-base">India</p>
+            </div>
+        </div>
+
+        <!-- Client Details -->
+        <div class="mb-8 md:mb-10 text-gray-700">
+            <p class="text-gray-500 font-semibold mb-1 uppercase text-xs md:text-sm tracking-wide">Bill To:</p>
+            <p class="text-lg md:text-xl font-bold text-gray-900">Jitendra choudhary</p>
+            <p class="text-sm md:text-base">Harji, Rajasthan</p>
+            <p class="text-sm md:text-base">India</p>
+        </div>
+
+        <!-- Table -->
+        <div class="overflow-x-auto mb-8 md:mb-10">
+            <table class="w-full text-left border-collapse min-w-full">
+                <thead>
+                    <tr class="border-b-2 border-gray-800 text-gray-900 uppercase text-xs md:text-sm tracking-wide">
+                        <th class="py-2 md:py-3 pr-4">Description</th>
+                        <th class="py-2 md:py-3 text-right">Amount</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    <tr class="border-b border-gray-200">
+                        <td class="py-4 md:py-5 font-medium text-sm md:text-base pr-4">Website Demo Development</td>
+                        <td class="py-4 md:py-5 text-right font-medium text-sm md:text-base">₹999</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Total -->
+        <div class="flex justify-end mb-10 md:mb-16">
+            <div class="w-full sm:w-2/3 md:w-1/2">
+                <div class="flex justify-between font-bold text-gray-900 text-xl md:text-2xl border-t-2 border-gray-800 pt-3">
+                    <span>Total:</span>
+                    <span>₹999</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-gray-500 text-xs md:text-sm mt-8 pt-8 border-t border-gray-200">
+            <p>Thank you for your business.</p>
+        </div>
+        
+    </div>
+</body>
+</html>
