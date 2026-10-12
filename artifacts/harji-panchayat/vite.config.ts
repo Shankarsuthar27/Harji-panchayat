@@ -1,4 +1,5 @@
 import path from 'path';
+import fs from 'fs';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
@@ -8,6 +9,20 @@ import runtimeErrorOverlay from '@replit/vite-plugin-runtime-error-modal';
 const rawPort = process.env.PORT || '3000';
 const port = Number(rawPort);
 const basePath = process.env.BASE_PATH || '/';
+
+function spaFallbackPlugin() {
+  return {
+    name: 'spa-fallback-plugin',
+    closeBundle() {
+      const outDir = path.resolve(import.meta.dirname, 'dist/public');
+      const indexPath = path.resolve(outDir, 'index.html');
+      const notFoundPath = path.resolve(outDir, '404.html');
+      if (fs.existsSync(indexPath)) {
+        fs.copyFileSync(indexPath, notFoundPath);
+      }
+    },
+  };
+}
 
 function apiMockPlugin() {
   const sampleWorks = [
@@ -211,6 +226,7 @@ function apiMockPlugin() {
 export default defineConfig({
   base: basePath,
   plugins: [
+    spaFallbackPlugin(),
     apiMockPlugin(),
     react(),
     tailwindcss(),
