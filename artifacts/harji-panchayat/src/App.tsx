@@ -37,6 +37,9 @@ import {
   ShieldCheck,
   Users,
   X,
+  ChevronRight,
+  Mail,
+  Heart,
 } from 'lucide-react';
 import {
   Link,
@@ -174,6 +177,29 @@ const copy = {
   },
 };
 
+const FbIcon = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.6 5H18V0h-3.808C10.596 0 9 1.583 9 4.615V8z" />
+  </svg>
+);
+const TwIcon = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+const IgIcon = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="2" y="2" width="20" height="20" rx="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+);
+const YtIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+  </svg>
+);
+
 function Header({ language, setLanguage, scale, setScale }: {
   language: Language;
   setLanguage: (lang: Language) => void;
@@ -193,12 +219,32 @@ function Header({ language, setLanguage, scale, setScale }: {
     { href: '/ward-panch', label: t.wardPanch, icon: Users },
     { href: '/patta', label: t.patta, icon: FileText },
   ];
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location]);
+
   function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLocation(`/works${searchText.trim() ? `?search=${encodeURIComponent(searchText.trim())}` : ''}`);
     setSearchOpen(false);
     setMobileOpen(false);
   }
+
+  const socials = [
+    { icon: <FbIcon />, href: '#', label: 'Facebook' },
+    { icon: <TwIcon />, href: '#', label: 'Twitter' },
+    { icon: <IgIcon />, href: '#', label: 'Instagram' },
+    { icon: <YtIcon />, href: '#', label: 'YouTube' },
+  ];
+
   return (
     <>
       <div className="access-bar">
@@ -219,28 +265,38 @@ function Header({ language, setLanguage, scale, setScale }: {
         <div className="masthead">
           <div className="top-inner">
             <Link href="/" className="brand" aria-label="Harji Gram Panchayat home" data-testid="link-brand-home">
-                <span className="emblem"><img src={stateEmblemUrl} alt="State Emblem of India" /></span>
-                <span className="brand-copy">
+              <span className="emblem"><img src={stateEmblemUrl} alt="State Emblem of India" /></span>
+              <span className="brand-copy">
                 <span className="portal-kicker">Panchayat public services</span>
                 <span className="brand-name">Harji Gram Panchayat</span>
                 <span className="brand-sub" lang="hi">हरजी ग्राम पंचायत</span>
               </span>
             </Link>
-            <form className={`search-form ${searchOpen ? 'search-open' : ''}`} role="search" onSubmit={handleSearch}>
-              <label className="sr-only" htmlFor="portal-search">{t.search}</label>
-              <input id="portal-search" type="search" placeholder={t.search} value={searchText} onChange={(event) => setSearchText(event.target.value)} data-testid="input-portal-search" />
-              <button type={searchOpen ? 'submit' : 'button'} aria-label={searchOpen ? t.search : 'Open search'} onClick={() => { if (!searchOpen) setSearchOpen(true); }} data-testid="button-portal-search"><Search size={18} /></button>
-            </form>
+            <div className="masthead-actions">
+              <form className={`search-form ${searchOpen ? 'search-open' : ''}`} role="search" onSubmit={handleSearch}>
+                <label className="sr-only" htmlFor="portal-search">{t.search}</label>
+                <input id="portal-search" type="search" placeholder={t.search} value={searchText} onChange={(event) => setSearchText(event.target.value)} data-testid="input-portal-search" />
+                <button type={searchOpen ? 'submit' : 'button'} aria-label={searchOpen ? t.search : 'Open search'} onClick={() => { if (!searchOpen) setSearchOpen(true); }} data-testid="button-portal-search"><Search size={18} /></button>
+              </form>
+              <button
+                className="mobile-header-menu-btn"
+                type="button"
+                aria-expanded={mobileOpen}
+                aria-controls="mobile-navigation-drawer"
+                onClick={() => setMobileOpen(true)}
+                data-testid="button-mobile-menu"
+                aria-label="Open navigation menu"
+              >
+                <Menu size={22} />
+              </button>
+            </div>
           </div>
         </div>
         <nav className="main-nav" aria-label="Main navigation">
           <div className="nav-inner">
-            <button className="mobile-toggle" type="button" aria-expanded={mobileOpen} aria-controls="primary-navigation" onClick={() => setMobileOpen(!mobileOpen)} data-testid="button-mobile-menu">
-              {mobileOpen ? <X size={18} /> : <Menu size={18} />} {t.menu}
-            </button>
-            <div id="primary-navigation" className={`nav-links ${mobileOpen ? 'is-open' : ''}`}>
+            <div id="primary-navigation" className="nav-links">
               {navItems.map(({ href, label, icon: Icon }) => (
-                <Link key={href} href={href} className="nav-link" aria-current={(location.split('?')[0] === href) ? 'page' : undefined} onClick={() => setMobileOpen(false)} data-testid={`link-nav-${href === '/' ? 'home' : href.slice(1)}`}>
+                <Link key={href} href={href} className="nav-link" aria-current={(location.split('?')[0] === href) ? 'page' : undefined} data-testid={`link-nav-${href === '/' ? 'home' : href.slice(1)}`}>
                   <Icon size={16} aria-hidden="true" /> {label}
                 </Link>
               ))}
@@ -248,6 +304,108 @@ function Header({ language, setLanguage, scale, setScale }: {
           </div>
         </nav>
       </header>
+
+      {/* Mobile Backdrop Overlay with Blur */}
+      <div
+        className={`nbov ${mobileOpen ? 'open' : ''}`}
+        onClick={() => setMobileOpen(false)}
+        aria-hidden="true"
+      />
+
+      {/* Mobile Off-canvas Navigation Drawer */}
+      <aside
+        id="mobile-navigation-drawer"
+        className={`nbsp ${mobileOpen ? 'open' : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation Menu"
+      >
+        <div className="nbsp-hd">
+          <div className="nbsp-lg">
+            <img src={stateEmblemUrl} alt="हरजी ग्राम पंचायत" />
+            <span className="nbsp-lg-title">{language === 'hi' ? 'हरजी ग्राम पंचायत' : 'Harji Panchayat'}</span>
+          </div>
+          <button
+            type="button"
+            className="nbsp-cl"
+            onClick={() => setMobileOpen(false)}
+            aria-label="Close menu"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        <nav className="nbsp-nav" aria-label="Mobile Navigation">
+          {navItems.map(({ href, label, icon: Icon }) => {
+            const isActive = location.split('?')[0] === href;
+            return (
+              <Link
+                key={href}
+                href={href}
+                className={`nbsl ${isActive ? 'act' : ''}`}
+                onClick={() => setMobileOpen(false)}
+                data-testid={`link-mobile-${href === '/' ? 'home' : href.slice(1)}`}
+              >
+                <Icon size={19} className="nbsl-ico" />
+                <span className="nbsl-txt">{label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="nbsp-ft">
+          <div className="nbsp-contact">
+            <a href="mailto:panchayat.harji@rajasthan.gov.in">
+              <Mail size={13} color="#fbac1b" />
+              <span>panchayat.harji@rajasthan.gov.in</span>
+            </a>
+          </div>
+
+          <div className="nbsp-sl">
+            {socials.map(({ icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                className="nbsp-si"
+                aria-label={label}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {icon}
+              </a>
+            ))}
+          </div>
+
+          <div className="nbsp-tools">
+            <div style={{ display: 'flex', gap: '6px' }}>
+              <button
+                type="button"
+                className="button button-outline"
+                style={{ padding: '4px 10px', fontSize: '12px' }}
+                onClick={() => setScale(Math.max(.9, +(scale - .1).toFixed(1)))}
+              >
+                {t.decrease}
+              </button>
+              <button
+                type="button"
+                className="button button-outline"
+                style={{ padding: '4px 10px', fontSize: '12px' }}
+                onClick={() => setScale(Math.min(1.3, +(scale + .1).toFixed(1)))}
+              >
+                {t.increase}
+              </button>
+            </div>
+            <select
+              aria-label={t.language}
+              value={language}
+              onChange={(event) => setLanguage(event.target.value as Language)}
+            >
+              <option value="en">English</option>
+              <option value="hi">हिन्दी</option>
+            </select>
+          </div>
+        </div>
+      </aside>
     </>
   );
 }
