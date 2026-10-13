@@ -108,6 +108,26 @@
 .access-tools { display: flex; align-items: center; gap: .35rem; margin-left: auto; }
 .access-tools button, .access-tools select { background: transparent; border: 1px solid #78909e; color: inherit; border-radius: 3px; padding: .15rem .45rem; cursor: pointer; }
 .access-tools select { max-width: 100px; }
+.access-contact-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.76rem;
+  color: #e2e8f0;
+}
+.access-contact-chip a {
+  color: #fbac1b !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+.access-contact-chip a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 760px) {
+  .access-contact-chip {
+    display: none;
+  }
+}
 .masthead { background: #fffdf8; border-bottom: 1px solid #e9e1d4; }
 .top-inner { min-height: 104px; display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; }
 .brand { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
@@ -798,19 +818,65 @@
   gap: 8px;
   font-size: 13px;
 }
-.nbsp-contact a {
-  color: #ffffff;
-  text-decoration: none;
+.nbsp-contact-box {
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.nbsp-contact-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.nbsp-contact-name {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+}
+.nbsp-contact-phones {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 20px;
+  flex-wrap: nowrap;
+}
+.nbsp-phone-btn {
+  color: #fbac1b !important;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s;
+}
+.nbsp-phone-btn:hover {
+  opacity: 0.85;
+}
+.nbsp-phone-sep {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-weight: 500;
+}
+.nbsp-mail-link {
+  color: #ffffff !important;
+  text-decoration: none !important;
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 12.5px;
-  opacity: 0.92;
-  transition: opacity 0.2s ease;
+  padding: 2px 0;
+  opacity: 0.95;
+  transition: opacity 0.2s;
 }
-.nbsp-contact a:hover {
+.nbsp-mail-link:hover {
   opacity: 1;
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 .nbsp-sl {
   display: flex;

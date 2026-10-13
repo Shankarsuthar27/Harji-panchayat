@@ -535,19 +535,65 @@ export const NAVBAR_CSS = `
   gap: 8px;
   font-size: 13px;
 }
-.nbsp-contact a {
-  color: #ffffff;
-  text-decoration: none;
+.nbsp-contact-box {
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.nbsp-contact-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.nbsp-contact-name {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+}
+.nbsp-contact-phones {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 20px;
+  flex-wrap: nowrap;
+}
+.nbsp-phone-btn {
+  color: #fbac1b !important;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s;
+}
+.nbsp-phone-btn:hover {
+  opacity: 0.85;
+}
+.nbsp-phone-sep {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-weight: 500;
+}
+.nbsp-mail-link {
+  color: #ffffff !important;
+  text-decoration: none !important;
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 12.5px;
-  opacity: 0.92;
-  transition: opacity 0.2s ease;
+  padding: 2px 0;
+  opacity: 0.95;
+  transition: opacity 0.2s;
 }
-.nbsp-contact a:hover {
+.nbsp-mail-link:hover {
   opacity: 1;
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 .nbsp-sl {
   display: flex;
@@ -869,7 +915,18 @@ export default function MobileSidebarDrawer({
 
         <div className="nbsp-ft">
           <div className="nbsp-contact">
-            <a href="mailto:panchayat.harji@rajasthan.gov.in">
+            <div className="nbsp-contact-box">
+              <div className="nbsp-contact-header">
+                <Phone size={13} color="#fbac1b" />
+                <span className="nbsp-contact-name">Jitendra Choudhary</span>
+              </div>
+              <div className="nbsp-contact-phones">
+                <a href="tel:+919649747191" className="nbsp-phone-btn">9649747191</a>
+                <span className="nbsp-phone-sep">/</span>
+                <a href="tel:+919649747966" className="nbsp-phone-btn">9649747966</a>
+              </div>
+            </div>
+            <a href="mailto:panchayat.harji@rajasthan.gov.in" className="nbsp-mail-link">
               <Mail size={13} color="#fbac1b" />
               <span>panchayat.harji@rajasthan.gov.in</span>
             </a>

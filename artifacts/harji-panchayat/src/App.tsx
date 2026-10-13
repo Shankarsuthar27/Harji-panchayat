@@ -256,6 +256,11 @@ function Header({ language, setLanguage, scale, setScale }: {
       <div className="access-bar">
         <div className="access-inner">
           <a href="#main-content">{t.skip}</a>
+          <span className="access-contact-chip">
+            <Phone size={12} color="#fbac1b" />
+            <span>{language === 'hi' ? 'संपर्क:' : 'Contact:'} <strong>Jitendra Choudhary</strong></span>
+            <a href="tel:+919649747191">9649747191</a>, <a href="tel:+919649747966">9649747966</a>
+          </span>
           <div className="access-tools" aria-label="Accessibility controls">
             <button type="button" aria-label="Decrease text size" onClick={() => setScale(Math.max(.9, +(scale - .1).toFixed(1)))} data-testid="button-text-decrease">{t.decrease}</button>
             <button type="button" aria-label="Increase text size" onClick={() => setScale(Math.min(1.3, +(scale + .1).toFixed(1)))} data-testid="button-text-increase">{t.increase}</button>
@@ -361,7 +366,18 @@ function Header({ language, setLanguage, scale, setScale }: {
 
         <div className="nbsp-ft">
           <div className="nbsp-contact">
-            <a href="mailto:panchayat.harji@rajasthan.gov.in">
+            <div className="nbsp-contact-box">
+              <div className="nbsp-contact-header">
+                <Phone size={13} color="#fbac1b" />
+                <span className="nbsp-contact-name">Jitendra Choudhary</span>
+              </div>
+              <div className="nbsp-contact-phones">
+                <a href="tel:+919649747191" className="nbsp-phone-btn">9649747191</a>
+                <span className="nbsp-phone-sep">/</span>
+                <a href="tel:+919649747966" className="nbsp-phone-btn">9649747966</a>
+              </div>
+            </div>
+            <a href="mailto:panchayat.harji@rajasthan.gov.in" className="nbsp-mail-link">
               <Mail size={13} color="#fbac1b" />
               <span>panchayat.harji@rajasthan.gov.in</span>
             </a>
@@ -439,8 +455,23 @@ function Footer({ language }: { language: Language }) {
           </section>
           <section>
             <h3>{t.office}</h3>
-            <p className="contact-line"><MapPin size={15} aria-hidden="true" /> Harji Gram Panchayat</p>
-            <p className="contact-line"><Phone size={15} aria-hidden="true" /> Contact details available at the Panchayat office</p>
+            <p className="contact-line"><MapPin size={15} aria-hidden="true" /> Harji Gram Panchayat, P.S. Ahor (Jalore)</p>
+            <div style={{ margin: '0.65rem 0', padding: '0.65rem 0.75rem', background: 'rgba(255,255,255,0.06)', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <div style={{ fontSize: '0.72rem', color: '#94a3b8', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.4px', marginBottom: '0.2rem' }}>
+                {language === 'hi' ? 'संपर्क सूत्र' : 'Contact Person'}
+              </div>
+              <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#f8fafc', marginBottom: '0.3rem' }}>
+                Jitendra Choudhary (जितेन्द्र चौधरी)
+              </div>
+              <p className="contact-line" style={{ margin: 0, fontSize: '0.86rem' }}>
+                <Phone size={14} aria-hidden="true" style={{ marginTop: '2px', color: '#38bdf8' }} />
+                <span>
+                  <a href="tel:+919649747191" style={{ color: '#38bdf8', textDecoration: 'none', fontWeight: 600 }}>9649747191</a>
+                  {' / '}
+                  <a href="tel:+919649747966" style={{ color: '#38bdf8', textDecoration: 'none', fontWeight: 600 }}>9649747966</a>
+                </span>
+              </p>
+            </div>
             <p>{t.contactNote}</p>
           </section>
         </div>
@@ -961,7 +992,27 @@ function InquiryPage({ language }: { language: Language }) {
           </form>
         </>}
       </div>
-      <aside className="form-aside"><h3><FileQuestion size={18} /> {language === 'hi' ? 'प्रश्न भेजने से पहले' : 'Before you send'}</h3><p>{language === 'hi' ? 'विषय चुनें और प्रश्न स्पष्ट रूप से लिखें।' : 'Choose the closest topic and describe your question clearly.'}</p><ul><li>{language === 'hi' ? 'सही मोबाइल नंबर प्रश्न के साथ दर्ज किया जाएगा।' : 'A valid mobile number is stored with your inquiry.'}</li><li>{language === 'hi' ? 'प्रश्न दर्ज होते ही संदर्भ संख्या दिखाई जाएगी।' : 'A reference number appears once your inquiry is recorded.'}</li></ul></aside>
+      <aside className="form-aside">
+        <h3><FileQuestion size={18} /> {language === 'hi' ? 'प्रश्न भेजने से पहले' : 'Before you send'}</h3>
+        <p>{language === 'hi' ? 'विषय चुनें और प्रश्न स्पष्ट रूप से लिखें।' : 'Choose the closest topic and describe your question clearly.'}</p>
+        <div style={{ margin: '0.75rem 0', padding: '0.75rem', background: '#f0f9ff', borderRadius: '6px', border: '1px solid #bae6fd' }}>
+          <div style={{ fontSize: '0.74rem', fontWeight: 700, color: '#0369a1', textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: '0.2rem' }}>
+            {language === 'hi' ? 'सीधा संपर्क / सहायता' : 'Direct Helpline / Assistance'}
+          </div>
+          <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#1e3a56' }}>
+            Jitendra Choudhary (जितेन्द्र चौधरी)
+          </div>
+          <div style={{ fontSize: '0.84rem', marginTop: '0.3rem' }}>
+            <Phone size={12} style={{ display: 'inline', verticalAlign: '-1px', color: '#0369a1', marginRight: '4px' }} />
+            <a href="tel:+919649747191" style={{ color: '#0369a1', textDecoration: 'none', fontWeight: 600 }}>9649747191</a>,{' '}
+            <a href="tel:+919649747966" style={{ color: '#0369a1', textDecoration: 'none', fontWeight: 600 }}>9649747966</a>
+          </div>
+        </div>
+        <ul>
+          <li>{language === 'hi' ? 'सही मोबाइल नंबर प्रश्न के साथ दर्ज किया जाएगा।' : 'A valid mobile number is stored with your inquiry.'}</li>
+          <li>{language === 'hi' ? 'प्रश्न दर्ज होते ही संदर्भ संख्या दिखाई जाएगी।' : 'A reference number appears once your inquiry is recorded.'}</li>
+        </ul>
+      </aside>
     </div></section>
   </>;
 }
@@ -1085,6 +1136,27 @@ function WardPanchPage({ language }: { language: Language }) {
               <div className="eyebrow">{t.publicReps}</div>
               <h2>{t.wardDirectory}</h2>
               <p>{t.wardDirectoryDesc}</p>
+            </div>
+          </div>
+          <div style={{ marginBottom: '1.5rem', padding: '1.15rem 1.35rem', background: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            <div>
+              <div style={{ fontSize: '0.74rem', fontWeight: 700, color: '#0369a1', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.2rem' }}>
+                {language === 'hi' ? 'ग्राम पंचायत संपर्क प्रतिनिधि / जन सहायता' : 'Gram Panchayat Contact Representative'}
+              </div>
+              <div style={{ fontSize: '1.12rem', fontWeight: 700, color: '#1e3a56' }}>
+                Jitendra Choudhary (जितेन्द्र चौधरी)
+              </div>
+              <div style={{ fontSize: '0.82rem', color: '#64748b', marginTop: '0.2rem' }}>
+                {language === 'hi' ? 'हरजी ग्राम पंचायत कार्यालय एवं नागरिक सेवा समन्वयक' : 'Harji Gram Panchayat Office & Public Coordination'}
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '0.65rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <a href="tel:+919649747191" className="button button-primary btn-theme" style={{ padding: '0.45rem 0.95rem', fontSize: '0.86rem', textDecoration: 'none' }}>
+                <Phone size={14} /> 9649747191
+              </a>
+              <a href="tel:+919649747966" className="button button-outline" style={{ padding: '0.45rem 0.95rem', fontSize: '0.86rem', textDecoration: 'none' }}>
+                <Phone size={14} /> 9649747966
+              </a>
             </div>
           </div>
           <div className="ward-empty-box" data-testid="ward-empty-state">
