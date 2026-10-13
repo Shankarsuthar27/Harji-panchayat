@@ -3,7 +3,12 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import villageBannerUrl from '@assets/generated_images/harji-village-panchayat.jpg';
+import villageBannerUrl from '@/assets/village/panchayat-bhawan.jpg';
+import panchayatBhawanImg from '@/assets/village/panchayat-bhawan.jpg';
+import govtSchoolImg from '@/assets/village/govt-school.jpg';
+import harjiBazaarImg from '@/assets/village/harji-bazaar-chowk.jpg';
+import harjiBusStandImg from '@/assets/village/harji-bus-stand.jpg';
+import harjiJeepTaxiImg from '@/assets/village/harji-jeep-taxi-stand.jpg';
 import stateEmblemUrl from './assets/state-emblem-india.svg';
 import {
   getGetPortalSummaryQueryKey,
@@ -49,6 +54,7 @@ import {
   Router as WouterRouter,
 } from 'wouter';
 import MobileSidebarDrawer from '@/components/MobileSidebarDrawer';
+import { localizeWork, DEMO_WORKS, DEMO_COMPLAINTS } from '@/data/panchayatData';
 
 const queryClient = new QueryClient();
 
@@ -496,230 +502,165 @@ function formatPanchayatDate(value: string, language: Language) {
   }).format(date);
 }
 
-export const DEMO_WORKS: Record<Language, PanchayatWork[]> = {
-  hi: [
-    {
-      id: 1,
-      title: 'मुख्य बाजार से बस स्टैंड तक सीसी सड़क निर्माण कार्य',
-      category: 'सड़क एवं परिवहन',
-      location: 'वार्ड 1 व 2, मुख्य मार्ग, हरजी',
-      description: 'सड़क चौड़ीकरण, पक्की सीसी ढलाई और दोनों तरफ कवर्ड जल निकासी नाली का सुदृढ़ निर्माण कार्य।',
-      sanctionedAmount: 1450000,
-      progress: 75,
-      status: 'ongoing',
-      startDate: '2026-04-10',
-      targetDate: '2026-11-30',
-      updatedAt: '2026-10-10T00:00:00.000Z',
-    },
-    {
-      id: 2,
-      title: 'समस्त 7 वार्डों में 120 सौर ऊर्जा (सोलर) स्ट्रीट लाइट स्थापना',
-      category: 'विद्युतीकरण',
-      location: 'वार्ड 1 से 7, ग्राम हरजी',
-      description: 'गांव के मुख्य चौराहों, सार्वजनिक गलियों, स्कूल तिराहे और श्मशान मार्ग पर उच्च गुणवत्ता वाली सोलर लाइट स्थापना।',
-      sanctionedAmount: 980000,
-      progress: 100,
-      status: 'completed',
-      startDate: '2026-02-01',
-      targetDate: '2026-08-15',
-      updatedAt: '2026-08-15T00:00:00.000Z',
-    },
-    {
-      id: 3,
-      title: 'सामुदायिक आरओ वाटर प्लांट एवं शुद्ध जल एटीएम स्थापना',
-      category: 'पेयजल योजना',
-      location: 'प्राथमिक स्वास्थ्य केंद्र के समीप, हरजी',
-      description: 'ग्रामीणों को स्वच्छ एवं फ्लोराइड मुक्त पेयजल आपूर्ति हेतु 2000 LPH क्षमता का आधुनिक आरओ प्लांट।',
-      sanctionedAmount: 850000,
-      progress: 60,
-      status: 'ongoing',
-      startDate: '2026-05-15',
-      targetDate: '2026-12-15',
-      updatedAt: '2026-09-28T00:00:00.000Z',
-    },
-    {
-      id: 4,
-      title: 'ग्राम पंचायत भवन जीर्णोद्धार एवं डिजिटल ई-मित्र सेवा केंद्र',
-      category: 'सार्वजनिक भवन',
-      location: 'पंचायत सचिवालय परिसर, हरजी',
-      description: 'नागरिकों की सुविधा हेतु पंचायत भवन की मरम्मत, सोलर रूफटॉप, कंप्यूटर लैब और आधुनिक प्रतीक्षा कक्ष।',
-      sanctionedAmount: 1200000,
-      progress: 100,
-      status: 'completed',
-      startDate: '2026-01-10',
-      targetDate: '2026-06-30',
-      updatedAt: '2026-06-30T00:00:00.000Z',
-    },
-    {
-      id: 5,
-      title: 'अमृत सरोवर ग्राम तालाब गहरीकरण, पक्के घाट एवं वृक्षारोपण',
-      category: 'जल संरक्षण',
-      location: 'पूर्वी सीमा, ग्राम हरजी',
-      description: 'वर्षा जल संचयन हेतु ऐतिहासिक तालाब की गाद निकासी, पक्के घाट, सुरक्षित पाथवे और बैठने हेतु बेंच निर्माण।',
-      sanctionedAmount: 1650000,
-      progress: 45,
-      status: 'ongoing',
-      startDate: '2026-06-01',
-      targetDate: '2027-01-20',
-      updatedAt: '2026-10-05T00:00:00.000Z',
-    },
-    {
-      id: 6,
-      title: 'राजकीय उच्च माध्यमिक विद्यालय सुरक्षित चारदीवारी एवं नवीन शौचालय ब्लॉक',
-      category: 'शिक्षा एवं विद्यालय',
-      location: 'स्कूल परिसर, हरजी',
-      description: 'छात्र-छात्राओं के लिए पृथक आधुनिक शौचालय, रनिंग वाटर सुविधा एवं सुरक्षित बाउंड्री वॉल निर्माण।',
-      sanctionedAmount: 750000,
-      progress: 15,
-      status: 'planned',
-      startDate: '2026-09-01',
-      targetDate: '2027-03-31',
-      updatedAt: '2026-09-15T00:00:00.000Z',
-    },
-    {
-      id: 7,
-      title: 'आवासीय क्षेत्र में भूमिगत पक्की नाली एवं सोखता गड्ढा निर्माण',
-      category: 'स्वच्छता एवं नाली',
-      location: 'वार्ड 3, 4 व 5, हरजी',
-      description: 'गलियों में जलभराव की समस्या के स्थायी निवारण हेतु कवर्ड भूमिगत ड्रेनेज लाइन और सोक-पिट निर्माण।',
-      sanctionedAmount: 1100000,
-      progress: 0,
-      status: 'planned',
-      startDate: '2026-10-01',
-      targetDate: '2027-04-30',
-      updatedAt: '2026-10-01T00:00:00.000Z',
-    },
-    {
-      id: 8,
-      title: 'ठोस एवं तरल कचरा प्रबंधन (SLWM) संसाधन एवं सेग्रीगेशन केंद्र',
-      category: 'स्वच्छता एवं नाली',
-      location: 'बायपास रोड के पास, हरजी',
-      description: 'स्वच्छ भारत मिशन ग्रामीण के अंतर्गत कचरा पृथक्करण शेड, कम्पोस्ट पिट एवं ई-रिक्शा द्वारा घर-घर संग्रहण।',
-      sanctionedAmount: 800000,
-      progress: 100,
-      status: 'completed',
-      startDate: '2026-01-15',
-      targetDate: '2026-07-10',
-      updatedAt: '2026-07-10T00:00:00.000Z',
-    },
-  ],
-  en: [
-    {
-      id: 1,
-      title: 'CC Road Construction from Main Market to Bus Stand',
-      category: 'Roads & Transport',
-      location: 'Ward 1 & 2, Main Road, Harji',
-      description: 'Road widening, durable cement concrete paving, and covered side drainage channel construction.',
-      sanctionedAmount: 1450000,
-      progress: 75,
-      status: 'ongoing',
-      startDate: '2026-04-10',
-      targetDate: '2026-11-30',
-      updatedAt: '2026-10-10T00:00:00.000Z',
-    },
-    {
-      id: 2,
-      title: 'Installation of 120 Solar Street Lights in All 7 Wards',
-      category: 'Electrification',
-      location: 'Wards 1 to 7, Harji Village',
-      description: 'Installation of high-efficiency solar street lights at major crossings, public alleys, and community areas.',
-      sanctionedAmount: 980000,
-      progress: 100,
-      status: 'completed',
-      startDate: '2026-02-01',
-      targetDate: '2026-08-15',
-      updatedAt: '2026-08-15T00:00:00.000Z',
-    },
-    {
-      id: 3,
-      title: 'Community RO Drinking Water Plant & Clean Water ATM',
-      category: 'Drinking Water',
-      location: 'Near Primary Health Center, Harji',
-      description: 'Installation of 2000 LPH capacity RO purification unit and water ATM providing clean fluoride-free water.',
-      sanctionedAmount: 850000,
-      progress: 60,
-      status: 'ongoing',
-      startDate: '2026-05-15',
-      targetDate: '2026-12-15',
-      updatedAt: '2026-09-28T00:00:00.000Z',
-    },
-    {
-      id: 4,
-      title: 'Panchayat Bhawan Modernization & Digital E-Mitra Center',
-      category: 'Public Infrastructure',
-      location: 'Panchayat Secretariat Campus, Harji',
-      description: 'Renovation of Panchayat building, rooftop solar panels, computer lab, and citizen waiting lounge.',
-      sanctionedAmount: 1200000,
-      progress: 100,
-      status: 'completed',
-      startDate: '2026-01-10',
-      targetDate: '2026-06-30',
-      updatedAt: '2026-06-30T00:00:00.000Z',
-    },
-    {
-      id: 5,
-      title: 'Amrit Sarovar Village Pond Deepening & Ghat Construction',
-      category: 'Water Conservation',
-      location: 'Eastern Border, Harji Village',
-      description: 'Rainwater conservation through silt removal, paved ghat steps, protective pathway, and plantation.',
-      sanctionedAmount: 1650000,
-      progress: 45,
-      status: 'ongoing',
-      startDate: '2026-06-01',
-      targetDate: '2027-01-20',
-      updatedAt: '2026-10-05T00:00:00.000Z',
-    },
-    {
-      id: 6,
-      title: 'Govt. Higher Secondary School Boundary Wall & Modern Toilets',
-      category: 'Education',
-      location: 'School Campus, Harji',
-      description: 'Construction of separate sanitation blocks for boys and girls with running water and safety boundary wall.',
-      sanctionedAmount: 750000,
-      progress: 15,
-      status: 'planned',
-      startDate: '2026-09-01',
-      targetDate: '2027-03-31',
-      updatedAt: '2026-09-15T00:00:00.000Z',
-    },
-    {
-      id: 7,
-      title: 'Underground Drainage Pipeline & Soak Pit Construction',
-      category: 'Sanitation & Drainage',
-      location: 'Wards 3, 4 & 5, Harji',
-      description: 'Covered underground pipeline and soak pits to permanently eliminate lane waterlogging issues.',
-      sanctionedAmount: 1100000,
-      progress: 0,
-      status: 'planned',
-      startDate: '2026-10-01',
-      targetDate: '2027-04-30',
-      updatedAt: '2026-10-01T00:00:00.000Z',
-    },
-    {
-      id: 8,
-      title: 'Solid & Liquid Waste Management (SLWM) Resource Center',
-      category: 'Sanitation & Drainage',
-      location: 'Near Bypass Road, Harji',
-      description: 'Waste segregation shed, community compost pits, and door-to-door e-rickshaw collection setup under SBM.',
-      sanctionedAmount: 800000,
-      progress: 100,
-      status: 'completed',
-      startDate: '2026-01-15',
-      targetDate: '2026-07-10',
-      updatedAt: '2026-07-10T00:00:00.000Z',
-    },
-  ],
+
+
+export const WORK_IMAGES: Record<number, string> = {
+  1: harjiBazaarImg,
+  2: harjiBusStandImg,
+  6: panchayatBhawanImg,
+  8: govtSchoolImg,
 };
 
+export interface VillageLandmarkItem {
+  id: string;
+  image: string;
+  titleHi: string;
+  titleEn: string;
+  tagHi: string;
+  tagEn: string;
+  descHi: string;
+  descEn: string;
+  locationHi: string;
+  locationEn: string;
+  highlightsHi: string[];
+  highlightsEn: string[];
+}
+
+export const VILLAGE_LANDMARKS: VillageLandmarkItem[] = [
+  {
+    id: 'govt-school',
+    image: govtSchoolImg,
+    titleHi: 'शाह हीराचन्द खिमराजजी राजकीय उच्च माध्यमिक विद्यालय, हरजी',
+    titleEn: 'Shah Heerachand Khimrajji Govt. Sr. Sec. School, Harji',
+    tagHi: 'शिक्षा संस्थान',
+    tagEn: 'Educational Institution',
+    descHi: 'हरजी का प्रमुख राजकीय उच्च माध्यमिक विद्यालय। मुख्य प्रवेश द्वार (शाह हीराचन्द खिमराजजी स्मृति द्वार), खेल मैदान, सर्व शिक्षा अभियान परिसर एवं कक्षा-कक्ष।',
+    descEn: 'Premier Government Senior Secondary School of Harji village, featuring the prominent memorial entrance arch gate, expansive sports ground, and Sarva Shiksha Abhiyan campus.',
+    locationHi: 'विद्यालय परिसर एवं मुख्य द्वार, हरजी (जालोर)',
+    locationEn: 'School Campus & Main Gate, Harji (Jalore)',
+    highlightsHi: [
+      'प्रवेश द्वार शीर्ष पट्टिका: "शाह हीराचन्द खिमराजजी राजकीय उच्च माध्यमिक विद्यालय हरजी (जालोर)"',
+      'द्वार निर्माण सौजन्य: शाह हीराचन्द खिमराजजी परिवार, हरजी',
+      'दीवार स्लोगन: "सर्व शिक्षा अभियान - सब पढ़ें सब बढ़ें"',
+      'परिसर सुविधाएं: मुख्य आर्च गेट, खेल मैदान (Playground), वृक्षारोपण एवं सुरक्षित पक्की चारदीवारी',
+    ],
+    highlightsEn: [
+      'Main Entrance Arch Inscription: "Shah Heerachand Khimrajji Govt. Sr. Sec. School Harji (Jalore)"',
+      'Donor Dedication on Pillar: Courtesy of Shah Heerachand Khimrajji family, Harji',
+      'Campus Slogan Mural: "Sarva Shiksha Abhiyan - Education for All"',
+      'Campus Infrastructure: Ornate entrance arch gate, dedicated playground, green plantation, and boundary wall',
+    ],
+  },
+  {
+    id: 'panchayat-bhawan',
+    image: panchayatBhawanImg,
+    titleHi: 'भारत निर्माण राजीव गांधी सेवा केंद्र (पंचायत भवन, हरजी)',
+    titleEn: 'Bharat Nirman Rajiv Gandhi Seva Kendra (Panchayat Bhawan, Harji)',
+    tagHi: 'प्रशासनिक सचिवालय',
+    tagEn: 'Administrative Secretariat',
+    descHi: 'ग्राम पंचायत हरजी का केंद्रीय प्रशासनिक मुख्यालय। यहाँ नियमित जनसुनवाई, ई-मित्र डिजिटल सेवाएं, स्वच्छ भारत मिशन एवं पंचायत समिति आहोर की विकास योजनाओं का संचालन होता है।',
+    descEn: 'Administrative headquarters of Harji Gram Panchayat under Ahor Panchayat Samiti. Houses official public grievance hearings, e-Mitra digital citizen services, and rural development schemes.',
+    locationHi: 'पंचायत भवन परिसर, हरजी पं.स. आहोर (जालोर)',
+    locationEn: 'Panchayat Bhawan Campus, Harji, Ahor (Jalore)',
+    highlightsHi: [
+      'भवन शीर्ष पट्टिका: "भारत निर्माण राजीव गांधी सेवा केन्द्र, ग्राम पंचायत हरजी पं.स. आहोर (जालोर)"',
+      'डिजिटल नागरिक केंद्र: "ई-मित्र कियोस्क - डिजिटल राजस्थान"',
+      'प्रशासनिक जनसुनवाई: नियमित जनसुनवाई (सरपंच, ग्राम विकास अधिकारी VDO, कनिष्ठ सहायक एवं पर्यवेक्षक अधिकारी)',
+      'स्वच्छता अभियान: "स्वच्छ भारत मिशन (ग्रामीण) - स्वच्छ ग्राम स्वस्थ जिला - स्वच्छ सर्वेक्षण ग्रामीण 2018"',
+    ],
+    highlightsEn: [
+      'Building Header Inscription: "Bharat Nirman Rajiv Gandhi Seva Kendra, Gram Panchayat Harji, P.S. Ahor (Jalore)"',
+      'Digital Citizen Services: e-Mitra digital services kiosk and internet portal',
+      'Public Grievance Hearing: Regular Jansunwai board (Sarpanch, VDO, Junior Assistant, Supervisory Officers)',
+      'Sanitation Campaign: Swachh Bharat Mission (Grameen) - Swachh Survekshan Rural hub',
+    ],
+  },
+  {
+    id: 'harji-bazaar',
+    image: harjiBazaarImg,
+    titleHi: 'हरजी मुख्य बाजार एवं सिरोही रोड चौराहा',
+    titleEn: 'Harji Main Bazaar & Sirohi Road Junction',
+    tagHi: 'व्यापारिक केंद्र',
+    tagEn: 'Commercial Square',
+    descHi: 'गांव का मुख्य व्यापारिक केंद्र, तिराहा एवं सिरोही रोड चौराहा। यहाँ कृषि उपकरण, गैरेज, मिष्ठान्न, मेडिकल व स्वास्थ्य सेवाएं उपलब्ध हैं।',
+    descEn: 'The central commercial square and primary road junction connecting Sirohi Road, local agro services, markets, pharmacy, and central village commerce.',
+    locationHi: 'सिरोही रोड चौराहा, मुख्य बाजार, हरजी',
+    locationEn: 'Sirohi Road Junction, Main Bazaar, Harji',
+    highlightsHi: [
+      'मार्ग संपर्क: सिरोही रोड (Sirohi Road) मुख्य संपर्क तिराहा',
+      'केंद्रीय स्थल: केंद्रीय ध्वज स्तंभ एवं चबूतरा (Community Flag Junction)',
+      'प्रमुख प्रतिष्ठान: राजाराम एग्रो एजेंसी (Rajaram Agro) एवं गुरु कृपा गैरेज',
+      'दुकानें व सेवाएं: हरि ॐ नाश्ता सेन्टर एवं स्वीट्स, मेडिकल स्टोर, जैन हॉस्पिटल (NICU) एवं बर्तन भंडार',
+    ],
+    highlightsEn: [
+      'Road Connectivity: Key intersection on Sirohi Road',
+      'Central Landmark: Village community flagpole and plaza junction',
+      'Agro & Commercial Services: Rajaram Agro Agency and Guru Kripa Garage',
+      'Local Amenities: Hari Om Sweets & Refreshments, Medical Pharmacy, and Jain Hospital',
+    ],
+  },
+  {
+    id: 'harji-bus-stand',
+    image: harjiBusStandImg,
+    titleHi: 'हरजी बस स्टैंड एवं श्री अन्नपूर्णा रसोई योजना (ग्रामीण)',
+    titleEn: 'Harji Bus Stand & Shree Annapurna Rasoi (Rural)',
+    tagHi: 'परिवहन एवं जन कल्याण',
+    tagEn: 'Transit & Public Welfare',
+    descHi: 'हरजी बस स्टैंड परिसर, जहां ग्रामीण राजस्थान रोडवेज व स्थानीय बस सेवाएं संचालित हैं। परिसर में राज्य सरकार की "श्री अन्नपूर्णा रसोई (ग्रामीण)" के तहत मात्र ₹8 में पौष्टिक भोजन उपलब्ध है।',
+    descEn: "Harji village bus terminal connecting routes across Jalore, Pali, and Sirohi. Accommodates the state government subsidized 'Shree Annapurna Rasoi (Rural)' serving meals at Rs. 8.",
+    locationHi: 'बस स्टैंड परिसर, हरजी',
+    locationEn: 'Bus Stand Terminal, Harji',
+    highlightsHi: [
+      'अन्नपूर्णा रसोई योजना (ग्रामीण): "श्री अन्नपूर्णा रसोई योजना (ग्रामीण) ग्रा.पं. हरजी पं.स. आहोर (जालोर)"',
+      'रियायती पौष्टिक आहार: ग्रामीणों व यात्रियों हेतु मात्र ₹8/- में भरपेट भोजन सुविधा',
+      'बस संपर्क: जालोर, आहोर, पाली, सिरोही एवं सुमेरपुर मार्ग',
+      'परिवहन सेवाएं: श्री वोवेश्वर महादेव बस सेवा एवं ग्रामीण रूट बसें (भाटगढ़-पाली-हरजी)',
+    ],
+    highlightsEn: [
+      'Rural Welfare Dining: Shree Annapurna Rasoi (Rural), Gram Panchayat Harji, Ahor',
+      'Affordable Nutritious Food: Hot subsidized meals at just Rs. 8/- for travelers and villagers',
+      'Regional Transit Routes: Direct buses connecting Jalore, Ahor, Pali, and Sirohi districts',
+      'Passenger Buses: Shri Voveswar Mahadev bus service and Bhatgarh-Pali-Harji rural route depot',
+    ],
+  },
+  {
+    id: 'harji-jeep-stand',
+    image: harjiJeepTaxiImg,
+    titleHi: 'हरजी जीप-टैक्सी स्टैंड एवं यात्री प्रतीक्षालय',
+    titleEn: 'Harji Jeep-Taxi Stand & Passenger Terminal',
+    tagHi: 'ग्रामीण आवागमन',
+    tagEn: 'Rural Transit',
+    descHi: 'बस स्टैंड के समीप हरजी का प्रमुख जीप-टैक्सी स्टैंड। यह आसपास की ढाणियों और तहसीलों (आहोर, जालोर) के लिए दैनिक सार्वजनिक आवागमन का मुख्य साधन है।',
+    descEn: 'The primary passenger jeep and taxi stand adjacent to the bus depot, serving vital rural transit between Harji, surrounding hamlets, Ahor, and Jalore district.',
+    locationHi: 'बस स्टैंड मैदान तिराहा, हरजी',
+    locationEn: 'Bus Stand Ground, Harji',
+    highlightsHi: [
+      'ग्रामीण परिवहन: महिंद्रा कमांडर एवं बोलेरो सवारी जीप सेवा',
+      'ढाणी व तहसील संपर्क: हरजी से आहोर, जालोर, सिरोही व समीपवर्ती ग्रामीण अंचल',
+      'यात्री प्रतीक्षालय: छायादार नीम-बड़ वृक्ष बैठक स्थल एवं सुरक्षित पिक-अप पॉइंट',
+    ],
+    highlightsEn: [
+      'Rural Passenger Vehicles: Local Mahindra Commander / Bolero taxi services',
+      'Inter-Village Connectivity: Linking Harji to Ahor, Jalore, Sirohi, and surrounding settlements',
+      'Passenger Amenities: Shaded seating area under neem and banyan trees with safe boarding point',
+    ],
+  },
+];
+
 function WorkCard({ work, language }: { work: PanchayatWork; language: Language }) {
+  const locWork = localizeWork(work, language);
+  const image = WORK_IMAGES[locWork.id];
   return (
-    <article className="work-card" data-testid={`card-work-${work.id}`}>
-      <div><span className={statusClass(work.status)}>{statusLabel(work.status, language)}</span></div>
-      <h3>{work.title}</h3>
-      <p>{work.description}</p>
+    <article className="work-card" data-testid={`card-work-${locWork.id}`}>
+      {image && (
+        <img src={image} alt={locWork.title} className="work-card-img" loading="lazy" />
+      )}
+      <div><span className={statusClass(locWork.status)}>{statusLabel(locWork.status, language)}</span></div>
+      <h3>{locWork.title}</h3>
+      <p>{locWork.description}</p>
       <div className="work-meta">
-        <span><MapPin size={13} /> {work.location}</span>
-        <span style={{ fontWeight: 700, color: '#0369a1' }}>{work.progress}%</span>
+        <span><MapPin size={13} /> {locWork.location}</span>
+        <span style={{ fontWeight: 700, color: '#0369a1' }}>{locWork.progress}%</span>
       </div>
     </article>
   );
@@ -727,11 +668,15 @@ function WorkCard({ work, language }: { work: PanchayatWork; language: Language 
 
 function HomePage({ language }: { language: Language }) {
   const t = copy[language];
+  const [activeLandmark, setActiveLandmark] = useState<VillageLandmarkItem | null>(null);
   const summary = useGetPortalSummary({ query: { queryKey: getGetPortalSummaryQueryKey() } });
   const works = useListPanchayatWorks({ query: { queryKey: getListPanchayatWorksQueryKey() } });
 
-  // Resilient fallback: always show demo works before and after deployment
-  const worksData = (works.data && works.data.length > 0) ? works.data : DEMO_WORKS[language];
+  // Resilient bilingual data: automatically localize works to active language
+  const worksData = useMemo(() => {
+    const raw = (works.data && works.data.length > 0) ? works.data : DEMO_WORKS[language];
+    return raw.map((w) => localizeWork(w, language));
+  }, [works.data, language]);
   const worksPreview = worksData.slice(0, 3);
 
   const summaryData = (summary.data && summary.data.totalWorks > 0) ? summary.data : {
@@ -792,6 +737,81 @@ function HomePage({ language }: { language: Language }) {
         </div>
       </div>
     </section>
+    <section className="section village-gallery" aria-label="Village Landmarks">
+      <div className="container">
+        <div className="section-head">
+          <div>
+            <div className="eyebrow">{language === 'hi' ? 'ग्राम दर्शन एवं धरोहर' : 'Village Landmarks'}</div>
+            <h2>{language === 'hi' ? 'हरजी गाँव के प्रमुख स्थल एवं संस्थान' : 'Key Landmarks & Facilities of Harji'}</h2>
+            <p>{language === 'hi' ? 'ग्राम पंचायत हरजी के वास्तविक प्रशासनिक, शैक्षणिक, व्यापारिक एवं सार्वजनिक स्थल।' : 'Authentic photographs of Harji village administrative, educational, commercial, and public transit facilities.'}</p>
+          </div>
+        </div>
+        <div className="gallery-grid">
+          {VILLAGE_LANDMARKS.map((landmark) => (
+            <div
+              key={landmark.id}
+              className="landmark-card"
+              onClick={() => setActiveLandmark(landmark)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter') setActiveLandmark(landmark); }}
+            >
+              <div className="landmark-img-wrap">
+                <img src={landmark.image} alt={language === 'hi' ? landmark.titleHi : landmark.titleEn} loading="lazy" />
+                <span className="landmark-tag">{language === 'hi' ? landmark.tagHi : landmark.tagEn}</span>
+                <span className="landmark-verified-badge"><BadgeCheck size={13} /> {language === 'hi' ? 'सत्यापित' : 'Verified'}</span>
+              </div>
+              <div className="landmark-body">
+                <h3>{language === 'hi' ? landmark.titleHi : landmark.titleEn}</h3>
+                <p>{language === 'hi' ? landmark.descHi : landmark.descEn}</p>
+                <div>
+                  <span className="landmark-location"><MapPin size={13} /> {language === 'hi' ? landmark.locationHi : landmark.locationEn}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {activeLandmark && (
+      <div className="landmark-modal-backdrop" onClick={() => setActiveLandmark(null)}>
+        <div className="landmark-modal-content" onClick={(e) => e.stopPropagation()}>
+          <button type="button" className="landmark-modal-close" onClick={() => setActiveLandmark(null)} aria-label="Close">
+            <X size={16} />
+          </button>
+          <img src={activeLandmark.image} alt={language === 'hi' ? activeLandmark.titleHi : activeLandmark.titleEn} className="landmark-modal-img" />
+          <div className="landmark-modal-body">
+            <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.4rem', alignItems: 'center' }}>
+              <span style={{ fontSize: '0.72rem', padding: '0.15rem 0.5rem', borderRadius: '4px', background: '#e0f2fe', color: '#0369a1', fontWeight: 700 }}>
+                {language === 'hi' ? activeLandmark.tagHi : activeLandmark.tagEn}
+              </span>
+              <span style={{ fontSize: '0.78rem', color: '#64748b' }}>
+                <MapPin size={12} style={{ display: 'inline', verticalAlign: '-1px' }} /> {language === 'hi' ? activeLandmark.locationHi : activeLandmark.locationEn}
+              </span>
+            </div>
+            <h2 style={{ fontSize: '1.15rem', color: '#1e3a56', margin: '0 0 0.35rem', fontWeight: 700, lineHeight: 1.3 }}>
+              {language === 'hi' ? activeLandmark.titleHi : activeLandmark.titleEn}
+            </h2>
+            <p style={{ fontSize: '0.84rem', color: '#475569', lineHeight: 1.5, margin: '0 0 0.55rem' }}>
+              {language === 'hi' ? activeLandmark.descHi : activeLandmark.descEn}
+            </p>
+            {((language === 'hi' ? activeLandmark.highlightsHi : activeLandmark.highlightsEn) || []).length > 0 && (
+              <div style={{ marginTop: '0.65rem', padding: '0.65rem 0.75rem', background: '#f8fafc', borderRadius: '6px', border: '1px solid #e2e8f0', textAlign: 'left' }}>
+                <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#0369a1', textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: '0.35rem' }}>
+                  {language === 'hi' ? 'विशेषताएं एवं पट्टिका विवरण' : 'Key Highlights & Signage Inscription'}
+                </div>
+                <ul style={{ margin: 0, paddingLeft: '1.1rem', fontSize: '0.8rem', color: '#334155', lineHeight: 1.5 }}>
+                  {(language === 'hi' ? activeLandmark.highlightsHi : activeLandmark.highlightsEn).map((h, i) => (
+                    <li key={i} style={{ marginBottom: '0.2rem' }}>{h}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    )}
     <section className="section works-preview">
       <div className="container">
         <div className="section-head">
@@ -821,7 +841,10 @@ function WorksPage({ language }: { language: Language }) {
   useEffect(() => setSearch(searchParam), [searchParam]);
 
   // Guaranteed availability: if API returns data use it, otherwise fall back to demo works
-  const allWorks = (result.data && result.data.length > 0) ? result.data : DEMO_WORKS[language];
+  const allWorks = useMemo(() => {
+    const raw = (result.data && result.data.length > 0) ? result.data : DEMO_WORKS[language];
+    return raw.map((w) => localizeWork(w, language));
+  }, [result.data, language]);
 
   const availableCategories = [...new Set(allWorks.map((work) => work.category))];
   const filtered = allWorks.filter((work) => {
@@ -848,6 +871,9 @@ function WorksPage({ language }: { language: Language }) {
           {filtered.map((work) => (
             <article className="work-row" key={work.id} data-testid={`row-work-${work.id}`}>
               <div>
+                {WORK_IMAGES[work.id] && (
+                  <img src={WORK_IMAGES[work.id]} alt={work.title} style={{ width: '100%', maxHeight: '180px', objectFit: 'cover', borderRadius: '6px', marginBottom: '0.75rem' }} loading="lazy" />
+                )}
                 <span className={statusClass(work.status)}>{statusLabel(work.status, language)}</span>
                 <h2>{work.title}</h2>
                 <p>{work.description}</p>
@@ -982,7 +1008,64 @@ function ComplaintPage({ language }: { language: Language }) {
         </>}
       </div>
       <aside className="form-aside"><h3><ShieldCheck size={18} /> {language === 'hi' ? 'शिकायत प्रक्रिया' : 'What happens next?'}</h3><p>{language === 'hi' ? 'आपकी शिकायत जमा होते ही संदर्भ संख्या प्राप्त होगी।' : 'After the grievance is accepted, you will receive a reference number.'}</p><ul><li>{language === 'hi' ? 'समस्या का सटीक स्थान लिखें।' : 'Name the area where the issue is located.'}</li><li>{language === 'hi' ? 'शिकायत के लिए सही मोबाइल नंबर दर्ज करें।' : 'Enter a valid mobile number with your grievance.'}</li></ul></aside>
-    </div></section>
+    </div>
+      <div className="container" style={{ marginTop: '2.5rem' }}>
+        <div className="section-head" style={{ marginBottom: '1.25rem' }}>
+          <div>
+            <div className="eyebrow">{language === 'hi' ? 'नागरिक सेवा निगरानी' : 'Grievance Transparency'}</div>
+            <h2>{language === 'hi' ? 'हाल ही में दर्ज शिकायतें एवं समाधान स्थिति' : 'Recent Grievances & Status'}</h2>
+            <p>{language === 'hi' ? 'पंचायत द्वारा दर्ज और समाधानित की गई प्रमुख जन शिकायतों का विवरण।' : 'Recent public concerns received and their current redressal status.'}</p>
+          </div>
+        </div>
+        <div className="complaint-list" style={{ display: 'grid', gap: '1rem' }}>
+          {DEMO_COMPLAINTS[language].map((comp) => (
+            <div
+              key={comp.id}
+              className="gen-card"
+              style={{
+                background: 'white',
+                border: '1px solid #e2e8f0',
+                borderRadius: '8px',
+                padding: '1.15rem 1.35rem',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: '0.8rem',
+                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
+              }}
+            >
+              <div style={{ flex: '1 1 320px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.4rem', flexWrap: 'wrap' }}>
+                  <span
+                    className={`status ${comp.status === 'resolved' ? 'status-completed badge-success' : comp.status === 'ongoing' ? 'status-ongoing badge-warning' : 'status-planned badge-planned'}`}
+                  >
+                    {comp.status === 'resolved'
+                      ? (language === 'hi' ? 'समाधान पूर्ण' : 'Resolved')
+                      : comp.status === 'ongoing'
+                      ? (language === 'hi' ? 'प्रगति पर' : 'In Progress')
+                      : (language === 'hi' ? 'समीक्षाधीन' : 'Under Review')}
+                  </span>
+                  <span style={{ fontSize: '0.82rem', color: '#0369a1', fontWeight: 700 }}>
+                    {comp.category}
+                  </span>
+                  <span style={{ fontSize: '0.78rem', color: '#94a3b8', fontFamily: 'monospace' }}>
+                    {comp.id}
+                  </span>
+                </div>
+                <h3 style={{ fontSize: '1rem', margin: '0.2rem 0 0.4rem', color: '#1e3a56', fontWeight: 700, lineHeight: 1.4 }}>
+                  {comp.title}
+                </h3>
+                <div style={{ display: 'flex', gap: '1.25rem', fontSize: '0.82rem', color: '#64748b' }}>
+                  <span><MapPin size={13} style={{ display: 'inline', verticalAlign: '-1px' }} /> {comp.area}</span>
+                  <span>{comp.date}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   </>;
 }
 
