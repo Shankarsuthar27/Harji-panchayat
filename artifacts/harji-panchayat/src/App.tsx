@@ -591,7 +591,7 @@ export const VILLAGE_LANDMARKS: VillageLandmarkItem[] = [
     tagEn: 'Administrative Secretariat',
     descHi: 'ग्राम पंचायत हरजी का केंद्रीय प्रशासनिक मुख्यालय। यहाँ नियमित जनसुनवाई, ई-मित्र डिजिटल सेवाएं, स्वच्छ भारत मिशन एवं पंचायत समिति आहोर की विकास योजनाओं का संचालन होता है।',
     descEn: 'Administrative headquarters of Harji Gram Panchayat under Ahor Panchayat Samiti. Houses official public grievance hearings, e-Mitra digital citizen services, and rural development schemes.',
-    locationHi: 'पंचायत भवन परिसर, हरजी पं.स. आहोर (जालोर)',
+    locationHi: 'पंचायत भवन परिसर, हरजी पं.स. हरजी (जालोर)',
     locationEn: 'Panchayat Bhawan Campus, Harji, Ahor (Jalore)',
     highlightsHi: [
       'भवन शीर्ष पट्टिका: "भारत निर्माण राजीव गांधी सेवा केन्द्र, ग्राम पंचायत हरजी पं.स. आहोर (जालोर)"',
