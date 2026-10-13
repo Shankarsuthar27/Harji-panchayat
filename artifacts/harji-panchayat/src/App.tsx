@@ -455,7 +455,7 @@ function Footer({ language }: { language: Language }) {
           </section>
           <section>
             <h3>{t.office}</h3>
-            <p className="contact-line"><MapPin size={15} aria-hidden="true" /> Harji Gram Panchayat, P.S. Ahor (Jalore)</p>
+            <p className="contact-line"><MapPin size={15} aria-hidden="true" /> Harji Gram Panchayat, Harji (Jalore)</p>
             <div style={{ margin: '0.65rem 0', padding: '0.65rem 0.75rem', background: 'rgba(255,255,255,0.06)', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)' }}>
               <div style={{ fontSize: '0.72rem', color: '#94a3b8', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.4px', marginBottom: '0.2rem' }}>
                 {language === 'hi' ? 'संपर्क सूत्र' : 'Contact Person'}
