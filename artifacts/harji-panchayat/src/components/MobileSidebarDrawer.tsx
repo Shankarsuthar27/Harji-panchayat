@@ -560,7 +560,13 @@ export const NAVBAR_CSS = `
   align-items: center;
   gap: 6px;
   padding-left: 20px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+}
+.nbsp-helpline-tag {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.01em;
 }
 .nbsp-phone-btn {
   color: #fbac1b !important;
@@ -918,9 +924,10 @@ export default function MobileSidebarDrawer({
             <div className="nbsp-contact-box">
               <div className="nbsp-contact-header">
                 <Phone size={13} color="#fbac1b" />
-                <span className="nbsp-contact-name">Jitendra Choudhary</span>
+                <span className="nbsp-contact-name">Jitendra Kumar</span>
               </div>
               <div className="nbsp-contact-phones">
+                <span className="nbsp-helpline-tag">Helpline:</span>
                 <a href="tel:+919649747191" className="nbsp-phone-btn">9649747191</a>
                 <span className="nbsp-phone-sep">/</span>
                 <a href="tel:+919649747966" className="nbsp-phone-btn">9649747966</a>

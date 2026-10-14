@@ -258,7 +258,7 @@ function Header({ language, setLanguage, scale, setScale }: {
           <a href="#main-content">{t.skip}</a>
           <span className="access-contact-chip">
             <Phone size={12} color="#fbac1b" />
-            <span>{language === 'hi' ? 'संपर्क:' : 'Contact:'} <strong>Jitendra Choudhary</strong></span>
+            <span>{language === 'hi' ? 'संपर्क:' : 'Contact:'} <strong>Jitendra Kumar</strong> | {language === 'hi' ? 'हेल्पलाइन:' : 'Helpline:'}</span>
             <a href="tel:+919649747191">9649747191</a>, <a href="tel:+919649747966">9649747966</a>
           </span>
           <div className="access-tools" aria-label="Accessibility controls">
@@ -369,9 +369,10 @@ function Header({ language, setLanguage, scale, setScale }: {
             <div className="nbsp-contact-box">
               <div className="nbsp-contact-header">
                 <Phone size={13} color="#fbac1b" />
-                <span className="nbsp-contact-name">Jitendra Choudhary</span>
+                <span className="nbsp-contact-name">Jitendra Kumar</span>
               </div>
               <div className="nbsp-contact-phones">
+                <span className="nbsp-helpline-tag">{language === 'hi' ? 'हेल्पलाइन:' : 'Helpline:'}</span>
                 <a href="tel:+919649747191" className="nbsp-phone-btn">9649747191</a>
                 <span className="nbsp-phone-sep">/</span>
                 <a href="tel:+919649747966" className="nbsp-phone-btn">9649747966</a>
@@ -461,11 +462,12 @@ function Footer({ language }: { language: Language }) {
                 {language === 'hi' ? 'संपर्क सूत्र' : 'Contact Person'}
               </div>
               <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#f8fafc', marginBottom: '0.3rem' }}>
-                Jitendra Choudhary (जितेन्द्र चौधरी)
+                Jitendra Kumar (जितेन्द्र कुमार)
               </div>
               <p className="contact-line" style={{ margin: 0, fontSize: '0.86rem' }}>
                 <Phone size={14} aria-hidden="true" style={{ marginTop: '2px', color: '#38bdf8' }} />
                 <span>
+                  <strong style={{ color: '#cbd5e1', marginRight: '6px' }}>{language === 'hi' ? 'हेल्पलाइन:' : 'Helpline:'}</strong>
                   <a href="tel:+919649747191" style={{ color: '#38bdf8', textDecoration: 'none', fontWeight: 600 }}>9649747191</a>
                   {' / '}
                   <a href="tel:+919649747966" style={{ color: '#38bdf8', textDecoration: 'none', fontWeight: 600 }}>9649747966</a>
@@ -1000,10 +1002,11 @@ function InquiryPage({ language }: { language: Language }) {
             {language === 'hi' ? 'सीधा संपर्क / सहायता' : 'Direct Helpline / Assistance'}
           </div>
           <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#1e3a56' }}>
-            Jitendra Choudhary (जितेन्द्र चौधरी)
+            Jitendra Kumar (जितेन्द्र कुमार)
           </div>
           <div style={{ fontSize: '0.84rem', marginTop: '0.3rem' }}>
             <Phone size={12} style={{ display: 'inline', verticalAlign: '-1px', color: '#0369a1', marginRight: '4px' }} />
+            <strong style={{ color: '#0369a1', marginRight: '5px' }}>{language === 'hi' ? 'हेल्पलाइन:' : 'Helpline:'}</strong>
             <a href="tel:+919649747191" style={{ color: '#0369a1', textDecoration: 'none', fontWeight: 600 }}>9649747191</a>,{' '}
             <a href="tel:+919649747966" style={{ color: '#0369a1', textDecoration: 'none', fontWeight: 600 }}>9649747966</a>
           </div>
@@ -1144,13 +1147,16 @@ function WardPanchPage({ language }: { language: Language }) {
                 {language === 'hi' ? 'ग्राम पंचायत संपर्क प्रतिनिधि / जन सहायता' : 'Gram Panchayat Contact Representative'}
               </div>
               <div style={{ fontSize: '1.12rem', fontWeight: 700, color: '#1e3a56' }}>
-                Jitendra Choudhary (जितेन्द्र चौधरी)
+                Jitendra Kumar (जितेन्द्र कुमार)
               </div>
               <div style={{ fontSize: '0.82rem', color: '#64748b', marginTop: '0.2rem' }}>
                 {language === 'hi' ? 'हरजी ग्राम पंचायत कार्यालय एवं नागरिक सेवा समन्वयक' : 'Harji Gram Panchayat Office & Public Coordination'}
               </div>
             </div>
             <div style={{ display: 'flex', gap: '0.65rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#0369a1', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+                {language === 'hi' ? 'हेल्पलाइन:' : 'Helpline:'}
+              </span>
               <a href="tel:+919649747191" className="button button-primary btn-theme" style={{ padding: '0.45rem 0.95rem', fontSize: '0.86rem', textDecoration: 'none' }}>
                 <Phone size={14} /> 9649747191
               </a>
