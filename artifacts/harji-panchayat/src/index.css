@@ -503,7 +503,9 @@
 .footer ul { padding: 0; margin: 0; list-style: none; }
 .footer a { color: #e8f0ee; text-decoration: none; }
 .footer a:hover { text-decoration: underline; }
-.footer-bottom { border-top: 1px solid #ffffff26; padding-top: .9rem; display: flex; justify-content: space-between; gap: 1rem; color: #c4d2d5; font-size: .74rem; }
+.footer-bottom { border-top: 1px solid #ffffff26; padding-top: .9rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; color: #c4d2d5; font-size: .74rem; }
+.developer-credit-link { color: #c4d2d5; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255, 255, 255, 0.3); transition: color .2s ease, text-decoration-color .2s ease; }
+.developer-credit-link:hover { color: #38bdf8; text-decoration-color: #38bdf8; }
 .contact-line { display: flex; align-items: flex-start; gap: .5rem; }
 .notice { color: #526872; font-size: .8rem; margin-top: .8rem; }
 

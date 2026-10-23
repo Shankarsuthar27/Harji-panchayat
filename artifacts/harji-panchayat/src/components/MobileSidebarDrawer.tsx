@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, X, Mail, House, ClipboardList, FileQuestion, ShieldCheck, Users, FileText } from 'lucide-react';
+import { Search, X, Mail, House, ClipboardList, FileQuestion, ShieldCheck, Users, FileText, Heart, Phone } from 'lucide-react';
 import stateEmblemUrl from '../assets/state-emblem-india.svg';
 
 const FbIcon = () => (
@@ -25,7 +25,17 @@ const YtIcon = () => (
   </svg>
 );
 
-export const NAV_LINKS = [
+export interface NavLinkItem {
+  label: string;
+  href: string;
+  id: string;
+  icon: any;
+  isRed?: boolean;
+  line1?: string;
+  line2?: string;
+}
+
+export const NAV_LINKS: NavLinkItem[] = [
   { label: 'Home', href: '/', id: 'home', icon: House },
   { label: 'Development works', href: '/works', id: 'works', icon: ClipboardList },
   { label: 'Ask a question', href: '/inquiry', id: 'inquiry', icon: FileQuestion },

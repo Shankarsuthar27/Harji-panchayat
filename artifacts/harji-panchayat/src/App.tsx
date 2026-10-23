@@ -479,6 +479,15 @@ function Footer({ language }: { language: Language }) {
         </div>
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} {t.copyright}</span>
+          <span>
+            <a
+              href="tel:9664471637"
+              className="developer-credit-link"
+              title="Call Shankar Suthar: 9664471637"
+            >
+              developed by shankar suthar
+            </a>
+          </span>
           <span>हरजी ग्राम पंचायत · स्थानीय स्वशासन</span>
         </div>
       </div>
